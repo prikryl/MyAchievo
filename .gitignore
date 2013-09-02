@@ -1,0 +1,7 @@
+connector-http/.settings/
+connector-http/.classpath
+connector-http/.project
+*/target/*
+*/.idea/*
+*/.settings/
+MyAchievoAndroid/out/

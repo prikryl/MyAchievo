@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_edit_work">Edit work</string>
+    <string name="edit_work_remarkAutoTV">Remark</string>
+    <string name="edit_work_submit">Submit</string>
+    <string name="edit_work_remark_blank_error">Remark cannto be blank.</string>
+    <string name="edit_work_remark_registered_no_work_error">Failed to register work.</string>
+    <string name="edit_work_registred">Work {0} sicessfully registred.</string>
+    <string name="edit_work_remark_registered_no_time_error">Cannot register work with duration 0 minutes.</string>
+
+</resources>

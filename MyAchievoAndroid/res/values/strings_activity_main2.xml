@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_main2">MyAchievo</string>
+    <string name="main2_register_work">Register work</string>
+    <string name="main2_no_registered_work_today">No registered work today...1234567890</string>
+    <!-- <string name="registered_work_grid_label">Registered workLBL</string> -->
+
+</resources>

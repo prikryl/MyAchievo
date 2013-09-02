@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="base_activity_user_not_authentized">User not authentized!</string>
+    <string name="base_activity_error_occured">Unexpected error!</string>
+    <string name="base_activity_error_occured_OK">OK</string>
+    <string name="menu_base_logout">Logout</string>
+
+</resources>

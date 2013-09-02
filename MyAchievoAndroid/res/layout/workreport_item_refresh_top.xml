@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40sp"
+    android:background="@color/gray"
+    android:orientation="horizontal" >
+
+    <ProgressBar
+        android:id="@+id/workReport_itemRefreshTop_progress"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/workReport_itemRefreshTop_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10sp"
+        android:text="@string/workReport_item_day_tapToReload" />
+
+</RelativeLayout>

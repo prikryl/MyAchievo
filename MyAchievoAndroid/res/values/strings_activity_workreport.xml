@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="workReport_item_day">Day...</string>
+    <string name="workReport_item_day_today">Today</string>
+    <string name="workReport_item_day_yesterday">Yesterday</string>
+    <string name="workReport_item_day_tapToReload">Tap to reload...</string>
+
+</resources>
