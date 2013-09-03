@@ -5,3 +5,4 @@ connector-http/.project
 */.idea/*
 */.settings/
 MyAchievoAndroid/out/
+web/src/main/resources/secrets.properties
