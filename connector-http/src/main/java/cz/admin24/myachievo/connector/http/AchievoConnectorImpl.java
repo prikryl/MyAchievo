@@ -100,7 +100,8 @@ public class AchievoConnectorImpl implements AchievoConnector {
      * java.lang.String)
      */
     public List<WorkReport> registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IOException {
-        new CmdRegisterHours(day, hours, minutes, projectId, phaseId, activityId, remark).execute(getConnection());
+        PersistentConnection connection = getConnection();
+        new CmdRegisterHours(connection.getUserId(), day, hours, minutes, projectId, phaseId, activityId, remark).execute(connection);
         return getHours(day, day);
     }
 
