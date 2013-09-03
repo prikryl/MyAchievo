@@ -28,12 +28,14 @@ public class BaseController {
 
     @Autowired
     private NativeClient calendarApi;
+    @Autowired
+    private SpringSocialClient ss;
 
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(ModelMap model) throws IOException {
-        calendarApi.x();
-
+//        calendarApi.x();
+ss.api();
         model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
 
         // Spring uses InternalResourceViewResolver and return back index.jsp

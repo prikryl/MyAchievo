@@ -1,33 +1,37 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="cz.admin24.myachievo" />
+    <context:component-scan base-package="cz.admin24.myachievo" />
 
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:secrets.properties</value>
-			</list>
-		</property>
-		<property name="ignoreResourceNotFound" value="true" />
-	</bean>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:secrets.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+    </bean>
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/jsp/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
+    <import resource="spring-security.xml" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+
+<!--     <bean class="org.springframework.social.google.connect.GoogleConnectionFactory"> -->
+<!--         <constructor-arg name="clientId" value="${clientId}" /> -->
+<!--         <constructor-arg name="clientSecret" value="${clientSecret}" /> -->
+<!--     </bean> -->
 
 </beans>
