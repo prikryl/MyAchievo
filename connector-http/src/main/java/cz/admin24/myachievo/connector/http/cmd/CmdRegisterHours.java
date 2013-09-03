@@ -20,7 +20,7 @@ public class CmdRegisterHours {
     private final Map<String, String> params            = new HashMap<String, String>();
 
 
-    public CmdRegisterHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) {
+    public CmdRegisterHours(String personId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) {
         try {
             dispatchUrl = new URL(dispatchUrlString);
         } catch (MalformedURLException e) {
@@ -40,7 +40,7 @@ public class CmdRegisterHours {
         params.put("atkfieldprefix", "");
         params.put("atknodetype", "timereg.hours");
         params.put("atkprimkey", "");
-        params.put("userid", "person.id='586'");
+        params.put("userid", "person.id='" + personId + "'");
         params.put("entrydate[year]", "" + c.get(Calendar.YEAR));
         params.put("entrydate[month]", "" + (1 + c.get(Calendar.MONTH)));
         params.put("entrydate[day]", "" + (c.get(Calendar.DAY_OF_MONTH)));
