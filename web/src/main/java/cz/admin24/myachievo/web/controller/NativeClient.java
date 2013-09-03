@@ -3,15 +3,12 @@ package cz.admin24.myachievo.web.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-//import java.util.Calendar;
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -20,45 +17,26 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.Calendar.CalendarList;
 import com.google.api.services.calendar.CalendarScopes;
 
-@Controller
-@RequestMapping("/")
-public class BaseController {
+@Service
+public class NativeClient {
+    private static final Logger LOG = LoggerFactory.getLogger(NativeClient.class);
 
-    @Autowired
-    private NativeClient calendarApi;
-
-
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public String welcome(ModelMap model) throws IOException {
-        calendarApi.x();
-
-        model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
-
-        // Spring uses InternalResourceViewResolver and return back index.jsp
-        return "index";
-
-    }
+    @Value("${com.google.clientId}")
+    private String              clientId;
+    @Value("${com.google.clientSecret}")
+    private String              clientSecret;
 
 
-    @RequestMapping(value = "/welcome/{name}", method = RequestMethod.GET)
-    public String welcomeName(@PathVariable String name, ModelMap model) {
-
-        model.addAttribute("message", "Maven Web Project + Spring 3 MVC - " + name);
-        return "index";
-
-    }
-
-
-    private void calendar() throws IOException {
+    public void x() throws IOException {
+        LOG.trace("clientId: '{}' clientSecret: '{}'", clientId, clientSecret);
         HttpTransport httpTransport = new NetHttpTransport();
         JacksonFactory jsonFactory = new JacksonFactory();
 
         // The clientId and clientSecret are copied from the API Access tab on
         // the Google APIs Console
-        String clientId = "YOUR_CLIENT_ID";
-        String clientSecret = "YOUR_CLIENT_SECRET";
 
         // Or your redirect URL for web based applications.
         String redirectUrl = "urn:ietf:wg:oauth:2.0:oob";
@@ -87,5 +65,7 @@ public class BaseController {
         // Create a new authorized API client
         Calendar service = new Calendar.Builder(httpTransport, jsonFactory,
                 credential).build();
+        CalendarList calendarList = service.calendarList();
     }
+
 }
