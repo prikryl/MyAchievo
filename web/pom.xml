@@ -13,6 +13,8 @@
     <properties>
         <spring.version>3.2.4.RELEASE</spring.version>
         <spring.security.version>3.1.4.RELEASE</spring.security.version>
+        <spring.social.version>1.1.0.BUILD-SNAPSHOT</spring.social.version>
+        <spring.social.google.version>1.0.0.BUILD-SNAPSHOT</spring.social.google.version>
         <junit.version>4.11</junit.version>
         <jdk.version>1.6</jdk.version>
     </properties>
@@ -22,7 +24,7 @@
         <dependency>
             <groupId>cz.admin24.myachievo</groupId>
             <artifactId>connector-http</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
 
 		<!-- google -->
@@ -137,44 +139,96 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--         <dependency> -->
-<!--             <groupId>org.springframework.security</groupId> -->
-<!--             <artifactId>spring-security-core</artifactId> -->
-<!--             <version>${spring.security.version}</version> -->
-<!--         </dependency> -->
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
+
+<!-- OAuth 2.0 dependencies -->
+<!--         <dependency> -->
+<!--             <groupId>org.springframework.security.oauth</groupId> -->
+<!--             <artifactId>spring-security-oauth2</artifactId> -->
+<!--             <version>1.0.5.RELEASE</version> -->
+<!--         </dependency> -->
+
+<!-- Spring social dependencies -->
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-core</artifactId>
-            <version>1.0.2.RELEASE</version>
+            <version>${spring.social.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-web</artifactId>
-            <version>1.0.2.RELEASE</version>
+            <version>${spring.social.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-google</artifactId>
-            <version>1.0.0.M2</version>
+            <version>${spring.social.google.version}</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-facebook</artifactId>
+            <version>1.1.0.BUILD-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-google</artifactId>
+            <version>${spring.social.google.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.social</groupId>
+                    <artifactId>spring-social-config</artifactId>
+                </exclusion>
+<!--     <exclusion> -->
+<!--       <groupId>org.springframework.security</groupId> -->
+<!--       <artifactId>spring-security-crypto</artifactId> -->
+<!--       <version>3.1.4.RELEASE</version> -->
+<!--       <scope>compile</scope> -->
+<!--     </exclusion> -->
+<!--     <exclusion> -->
+<!--       <groupId>com.fasterxml.jackson.core</groupId> -->
+<!--       <artifactId>jackson-annotations</artifactId> -->
+<!--       <version>2.2.2</version> -->
+<!--       <scope>compile</scope> -->
+<!--     </exclusion> -->
+<!--     <exclusion> -->
+<!--       <groupId>com.fasterxml.jackson.core</groupId> -->
+<!--       <artifactId>jackson-databind</artifactId> -->
+<!--       <version>2.2.2</version> -->
+<!--       <scope>compile</scope> -->
+<!--     </exclusion> -->
+<!--     <exclusion> -->
+<!--       <groupId>com.fasterxml.jackson.core</groupId> -->
+<!--       <artifactId>jackson-core</artifactId> -->
+<!--       <version>2.2.2</version> -->
+<!--       <scope>compile</scope> -->
+<!--     </exclusion> -->
+                <exclusion>
+                    <groupId>org.springframework.social</groupId>
+                    <artifactId>spring-social-security</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.social</groupId>
+                    <artifactId>spring-social-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.1.2</version>
+            <version>4.2.5</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -187,6 +241,21 @@
             <version>1.9.13</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.7.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901.jdbc4</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>

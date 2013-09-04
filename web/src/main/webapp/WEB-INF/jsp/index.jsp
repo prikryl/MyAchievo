@@ -10,6 +10,13 @@
 	<h2>Hello World!</h2>
 
 	<h4>Message : ${message}</h4>
+
+	<h2>Hello World!</h2>
+	<form id="tw_signin" action="<c:url value="/signin/twitter"/>"
+		method="POST">
+		<button type="submit"></button>
+	</form>
+
 </body>
 </html>
 
