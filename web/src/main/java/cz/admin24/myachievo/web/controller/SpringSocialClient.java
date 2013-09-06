@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpringSocialClient {
     // @Autowired
-//     private GoogleConnectionFactory connectionFactory;
+    // private GoogleConnectionFactory connectionFactory;
 
     public void api() {
         // OAuth2Operations oAuthOperations = connectionFactory.getOAuthOperations();

@@ -44,7 +44,7 @@
 
 
     <bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
-        <constructor-arg value="#{request.userPrincipal.name}" />
+        <constructor-arg value="#{request.userPrincipal.principal.userId}" />
         <aop:scoped-proxy proxy-target-class="false" />
     </bean>
 

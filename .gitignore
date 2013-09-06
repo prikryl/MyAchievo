@@ -6,3 +6,7 @@ connector-http/.project
 */.settings/
 MyAchievoAndroid/out/
 web/src/main/resources/secrets.properties
+*.classpath
+web/.project
+web/src/main/java/rebel.xml
+web/.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch

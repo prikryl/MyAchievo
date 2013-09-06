@@ -25,6 +25,8 @@
 
     <import resource="social-security.xml" />
 
+    <import resource="google.xml" />
+
     <context:component-scan base-package="cz.admin24.myachievo.web" />
 
 </beans>

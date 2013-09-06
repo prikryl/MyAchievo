@@ -2,6 +2,8 @@ package cz.admin24.myachievo.web.entity;
 
 import java.util.UUID;
 
+import com.google.common.base.Objects;
+
 public class Account {
     private final UUID   id;
     private final String username;
@@ -44,4 +46,19 @@ public class Account {
         return id;
     }
 
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+
+    @Override
+    public boolean equals(Object rhs) {
+        if (!(rhs instanceof Account)) {
+            return false;
+        }
+        Account a2 = (Account) rhs;
+        return Objects.equal(id, a2.id);
+    }
 }
