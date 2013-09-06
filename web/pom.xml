@@ -61,7 +61,12 @@
             <version>${spring.social.google.version}</version>
         </dependency>
 
-
+<!-- URL rewrite engine -->
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>4.0.3</version>
+        </dependency>
 		<!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>

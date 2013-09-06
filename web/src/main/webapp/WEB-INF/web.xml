@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/static/*</url-pattern>
+        <url-pattern>/client/*</url-pattern>
     </servlet-mapping>
 
 	<!-- H2 Database Console for managing the app's database -->
@@ -64,6 +64,11 @@
 <!-- 		<servlet-name>H2Console</servlet-name> -->
 <!-- 		<url-pattern>/admin/h2/*</url-pattern> -->
 <!-- 	</servlet-mapping> -->
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+
 
 	<!-- Ensure UTF-8 encoded pages so that certain characters are displayed and submitted correctly -->
     <filter>
@@ -79,6 +84,12 @@
         </init-param>
     </filter>
 
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
