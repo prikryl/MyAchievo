@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:facebook="http://www.springframework.org/schema/social/facebook"
+    xmlns:twitter="http://www.springframework.org/schema/social/twitter" xmlns:google="http://www.springframework.org/schema/social/google"
+    xmlns:social="http://www.springframework.org/schema/social" xmlns:linkedin="http://www.springframework.org/schema/social/linkedin" xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/social/facebook http://www.springframework.org/schema/social/spring-social-facebook.xsd
+		http://www.springframework.org/schema/social/linkedin http://www.springframework.org/schema/social/spring-social-linkedin.xsd
+		http://www.springframework.org/schema/social/google http://www.springframework.org/schema/social/spring-social-google.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/social/twitter http://www.springframework.org/schema/social/spring-social-twitter.xsd
+		http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+            http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+<!-- 	<context:property-placeholder location="classpath:/org/springframework/social/showcase/config/application.properties" /> -->
+
+<!--     <facebook:config app-id="${com.facebook.clientId}" app-secret="${com.facebook.clientSecret}" app-namespace="socialshowcase" /> -->
+<!--     <facebook:config app-id="${com.google.clientId}" app-secret="${com.google.clientSecret}" /> -->
+<!-- 	<twitter:config app-id="${twitter.consumerKey}" app-secret="${twitter.consumerSecret}"/> -->
+<!-- 	<linkedin:config app-id="${linkedin.consumerKey}" app-secret="${linkedin.consumerSecret}"/> -->
+
+<!--     <social:jdbc-connection-repository /> -->
+
+    <bean id="userIdSource" class="org.springframework.social.security.AuthenticationNameUserIdSource" />
+
+    <bean id="connectController" class="org.springframework.social.connect.web.ConnectController" autowire="constructor">
+        <property name="connectInterceptors">
+            <list>
+<!--                 <bean class="org.springframework.social.showcase.facebook.PostToWallAfterConnectInterceptor" /> -->
+<!--                 <bean class="org.springframework.social.showcase.twitter.TweetAfterConnectInterceptor" /> -->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="psc" class="org.springframework.social.connect.web.ProviderSignInController" autowire="constructor" />
+    <bean id="signInAdapter" class="cz.admin24.myachievo.web.security.SimpleSignInAdapter" autowire="constructor" />
+
+    <bean id="disconnectController" class="org.springframework.social.facebook.web.DisconnectController" c:_0-ref="usersConnectionRepository"
+        c:_1="${com.facebook.clientSecret}" />
+
+
+
+
+
+    <bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
+        <constructor-arg value="#{request.userPrincipal.name}" />
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+
+
+    <bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+        <constructor-arg ref="dataSource" />
+        <constructor-arg ref="connectionFactoryRegistry" />
+        <constructor-arg ref="textEncryptor" />
+        <property name="connectionSignUp" ref="autoSignUpService" />
+    </bean>
+
+    <bean id="autoSignUpService" class="cz.admin24.myachievo.web.security.AutoSignUpService" />
+
+    <bean name="connectionFactoryLocator" class="org.springframework.social.security.SocialAuthenticationServiceRegistry">
+        <property name="authenticationServices">
+            <list>
+<!--                 <bean class="org.springframework.social.twitter.connect.TwitterConnectionFactory"> -->
+<!--                     <constructor-arg value="$_{twitter.consumerKey}" /> -->
+<!--                     <constructor-arg value="$_{twitter.consumerSecret}" /> -->
+<!--                 </bean> -->
+                <bean class="org.springframework.social.facebook.security.FacebookAuthenticationService">
+                    <constructor-arg value="${com.facebook.clientId}" />
+                    <constructor-arg value="${com.facebook.clientSecret}" />
+                </bean>
+                <bean class="org.springframework.social.google.security.GoogleAuthenticationService">
+                    <constructor-arg value="${com.google.clientId}" />
+                    <constructor-arg value="${com.google.clientSecret}" />
+                    <property name="defaultScope" value="https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean id="connectionFactoryRegistry" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+        <property name="connectionFactories">
+            <list>
+<!--                 <bean class="org.springframework.social.twitter.connect.TwitterConnectionFactory"> -->
+<!--                     <constructor-arg value="$_{twitter.consumerKey}" /> -->
+<!--                     <constructor-arg value="$_{twitter.consumerSecret}" /> -->
+<!--                 </bean> -->
+                <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+                    <constructor-arg value="${com.facebook.clientId}" />
+                    <constructor-arg value="${com.facebook.clientSecret}" />
+                </bean>
+                <bean class="org.springframework.social.google.connect.GoogleConnectionFactory">
+                    <constructor-arg value="${com.google.clientId}" />
+                    <constructor-arg value="${com.google.clientSecret}" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <beans>
+        <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
+    </beans>
+
+</beans>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:c="http://www.springframework.org/schema/c" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+<!--     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!--         <property name="locations"> -->
+<!--             <list> -->
+<!--                 <value>classpath:secrets.properties</value> -->
+<!--             </list> -->
+<!--         </property> -->
+<!--         <property name="ignoreResourceNotFound" value="true" /> -->
+<!--     </bean> -->
+
+<!-- BoneCP configuration -->
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+        <property name="driverClass" value="${db.driver}" />
+        <property name="jdbcUrl" value="${db.jdbc}" />
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="idleConnectionTestPeriod" value="60" />
+        <property name="idleMaxAge" value="240" />
+        <property name="maxConnectionsPerPartition" value="30" />
+        <property name="minConnectionsPerPartition" value="10" />
+        <property name="partitionCount" value="3" />
+        <property name="acquireIncrement" value="5" />
+        <property name="statementsCacheSize" value="100" />
+        <property name="releaseHelperThreads" value="3" />
+    </bean>
+
+       <!-- JDBC template -->
+    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" c:_-ref="dataSource" />
+
+
+    <tx:annotation-driven />
+
+
+<!--     <jdbc:embedded-database id="dataSource" type="H2"> -->
+<!--         <jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" /> -->
+<!--         <jdbc:script location="classpath:/org/springframework/social/showcase/account/Account.sql" /> -->
+<!--         <jdbc:script location="classpath:/org/springframework/social/showcase/account/data.sql" /> -->
+<!--     </jdbc:embedded-database> -->
+</beans>

@@ -27,15 +27,27 @@ import com.google.api.services.calendar.CalendarScopes;
 public class BaseController {
 
     @Autowired
-    private NativeClient calendarApi;
+    private NativeClient       calendarApi;
     @Autowired
     private SpringSocialClient ss;
 
 
+    @RequestMapping("")
+    public String index() {
+        return "index";
+    }
+
+
+    @RequestMapping("signin")
+    public String signin() {
+        return "signin";
+    }
+
+
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(ModelMap model) throws IOException {
-//        calendarApi.x();
-ss.api();
+        // calendarApi.x();
+        ss.api();
         model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
 
         // Spring uses InternalResourceViewResolver and return back index.jsp
