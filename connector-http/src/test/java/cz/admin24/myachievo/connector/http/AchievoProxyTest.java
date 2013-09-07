@@ -2,6 +2,7 @@ package cz.admin24.myachievo.connector.http;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import junit.framework.TestCase;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import cz.admin24.myachievo.connector.http.dto.BaseObject;
@@ -64,6 +66,23 @@ public class AchievoProxyTest extends TestCase {
         Date from = c.getTime();
 
         proxy.getHours(from, to);
+    }
+
+
+    @Test(enabled = true)
+    public void testLoadWorkReport_withoutData() throws IOException {
+        AchievoConnector proxy = new AchievoConnectorImpl();
+        proxy.setCredentials(USERNAME, PASSWORD_OK);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.WEEK_OF_YEAR, 1);
+        Date to = c.getTime();
+
+        c.add(Calendar.WEEK_OF_YEAR, 1);
+        Date from = c.getTime();
+
+        List<WorkReport> hours = proxy.getHours(from, to);
+
+        Assert.assertEquals(hours, Collections.EMPTY_LIST);
     }
 
 

@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetPhaseActivities;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjectPhases;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjects;
-import cz.admin24.myachievo.connector.http.cmd.CmdGetWorkReport;
+import cz.admin24.myachievo.connector.http.cmd.CmdGetWorkReportFromHtml;
 import cz.admin24.myachievo.connector.http.cmd.CmdRegisterHours;
 import cz.admin24.myachievo.connector.http.dto.PhaseActivity;
 import cz.admin24.myachievo.connector.http.dto.Project;
@@ -113,7 +113,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
      * java.util.Date)
      */
     public List<WorkReport> getHours(Date from, Date to) throws IOException {
-        return new CmdGetWorkReport(from, to).execute(getConnection());
+        return new CmdGetWorkReportFromHtml(from, to).execute(getConnection());
     }
 
 

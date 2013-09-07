@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class WorkReport {
+    private final String  id;
     private final Date    date;
     private final String  project;
     private final String  phase;
@@ -15,7 +16,8 @@ public class WorkReport {
     private final Integer minutes;
 
 
-    public WorkReport(Date date, String project, String phase, String activity, String remark, Integer hours, Integer minutes) {
+    public WorkReport(String id, Date date, String project, String phase, String activity, String remark, Integer hours, Integer minutes) {
+        this.id = id;
         this.date = date;
         this.project = project;
         this.phase = phase;
@@ -23,6 +25,11 @@ public class WorkReport {
         this.remark = remark;
         this.hours = hours;
         this.minutes = minutes;
+    }
+
+
+    public String getId() {
+        return id;
     }
 
 

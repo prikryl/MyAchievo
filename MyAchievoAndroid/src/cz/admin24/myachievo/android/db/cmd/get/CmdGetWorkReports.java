@@ -32,7 +32,7 @@ public class CmdGetWorkReports extends CmdGet<WorkReport> {
                 Integer hours = getInteger(cursor, WorkReportTable.COLUMN_NAME_HOURS);
                 Integer minutes = getInteger(cursor, WorkReportTable.COLUMN_NAME_MINUTES);
 
-                WorkReport r = new WorkReport(date, project, phase, activity, remark, hours, minutes);
+                WorkReport r = new WorkReport("", date, project, phase, activity, remark, hours, minutes);
                 ret.add(r);
 
                 found = cursor.moveToNext();
