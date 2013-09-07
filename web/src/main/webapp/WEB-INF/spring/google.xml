@@ -16,6 +16,12 @@
     <bean class="cz.admin24.myachievo.web.service.CalendarFactory.GoogleCalendarService" scope="request">
         <aop:scoped-proxy />
     </bean>
+    <bean class="cz.admin24.myachievo.web.service.AchievoConnectorFactory" scope="request">
+        <aop:scoped-proxy />
+    </bean>
+<!--     <bean id="achievoConnector" scope="request" factory-bean="achievoConnectorFactory"> -->
+<!--         <aop:scoped-proxy proxy-target-class="false" /> -->
+<!--     </bean> -->
 
 
 </beans>

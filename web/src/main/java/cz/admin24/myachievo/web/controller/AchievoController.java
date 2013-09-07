@@ -27,7 +27,7 @@ public class AchievoController {
     public String updateCredentials(Model model) {
         AchievoCredentials credentials = new AchievoCredentials();
         SocialUserWithId actualUser = (SocialUserWithId) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        AchievoAccount account = achievoAccountDAO.findById(actualUser.getUserUUId());
+        AchievoAccount account = achievoAccountDAO.findById(actualUser.getUserUUID());
         credentials.setUsername(account.getUsername());
         model.addAttribute("credentials", credentials);
         return "/achievo/updateCredentials";
@@ -42,7 +42,7 @@ public class AchievoController {
 
         SocialUserWithId actualUser = (SocialUserWithId)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        achievoAccountDAO.upsertCredentials(actualUser.getUserUUId(), credentials.getUsername(),
+        achievoAccountDAO.upsertCredentials(actualUser.getUserUUID(), credentials.getUsername(),
                 credentials.getPassword());
         model.addAttribute("message", "Successfully saved credentials: " + credentials.getUsername());
         return "/achievo/updateCredentials";

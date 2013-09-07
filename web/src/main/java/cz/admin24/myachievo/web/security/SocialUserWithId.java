@@ -24,14 +24,14 @@ public class SocialUserWithId extends SocialUser {
     }
 
 
-    public UUID getUserUUId() {
+    public UUID getUserUUID() {
         return account.getId();
     }
 
 
     @Override
     public String getUserId() {
-        return getUserUUId().toString();
+        return getUserUUID().toString();
     }
 
 
