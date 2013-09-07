@@ -25,7 +25,7 @@
         <dependency>
             <groupId>cz.admin24.myachievo</groupId>
             <artifactId>connector-http</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
         </dependency>
 
         <!-- google -->

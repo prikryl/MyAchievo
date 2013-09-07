@@ -12,16 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar.Calendars;
 import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.CalendarListEntry;
-import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.Events;
 import com.google.common.collect.Lists;
 
 import cz.admin24.myachievo.connector.http.AchievoConnector;
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
 import cz.admin24.myachievo.web.CalendarConstants;
-import cz.admin24.myachievo.web.calendar.EventBuilder;
+import cz.admin24.myachievo.web.calendar.ReportMerger;
 import cz.admin24.myachievo.web.service.CalendarFactory.GoogleCalendarService;
 
 @Controller()
@@ -64,15 +65,15 @@ public class CalendarController {
 
 
     private void updateReports(String calendarId) throws IOException {
-        EventBuilder builder = new EventBuilder();
         Date to = new Date();
         Date from = DateUtils.addDays(to, -10);
+        DateTime fromDateTime = new DateTime(from);
+        DateTime toDateTime = new DateTime(to);
+
         List<WorkReport> reports = achievoConnector.getHours(from, to);
-        for (WorkReport report : reports) {
-            Event newEvent = builder.buildEvent(report);
-            Event persistedEvent = googleCalendarService.events().insert(calendarId, newEvent).execute();
-            LOG.debug("Persisted event: {}", persistedEvent);
-        }
+        Events events = googleCalendarService.events().list(calendarId).setTimeMin(fromDateTime).setTimeMax(toDateTime).execute();
+
+        new ReportMerger(googleCalendarService, calendarId).merge(reports, events);
 
     }
 
