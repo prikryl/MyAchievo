@@ -1,15 +1,18 @@
 package cz.admin24.myachievo.web.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import com.google.common.base.Objects;
 
-public class Account {
-    private final UUID   id;
-    private final String username;
-    private final String password;
-    private final String firstName;
-    private final String lastName;
+public class Account implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private final UUID        id;
+    private final String      username;
+    private final String      password;
+    private final String      firstName;
+    private final String      lastName;
 
 
     public Account(UUID id, String username, String password, String firstName, String lastName) {

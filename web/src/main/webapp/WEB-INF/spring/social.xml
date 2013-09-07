@@ -96,8 +96,5 @@
         </property>
     </bean>
 
-    <beans>
-        <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
-    </beans>
 
 </beans>

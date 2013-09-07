@@ -11,11 +11,11 @@
     <bean class="com.google.api.client.http.javanet.NetHttpTransport" />
     <bean class="com.google.api.client.json.jackson2.JacksonFactory" />
 
-    <bean id="calendarFactory" class="cz.admin24.myachievo.web.calendar.CalendarFactory" />
+<!--     <bean class="cz.admin24.myachievo.web.service.CalendarFactory" /> -->
 
-<!--     <bean class="com.google.api.services.calendar.Calendar" factory-bean="calendarFactory" scope="request"> -->
-<!--         <aop:scoped-proxy /> -->
-<!--     </bean> -->
+    <bean class="cz.admin24.myachievo.web.service.CalendarFactory.GoogleCalendarService" scope="request">
+        <aop:scoped-proxy />
+    </bean>
 
 
 </beans>

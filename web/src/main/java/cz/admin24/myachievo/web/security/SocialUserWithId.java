@@ -1,6 +1,7 @@
 package cz.admin24.myachievo.web.security;
 
 import java.util.Collections;
+import java.util.UUID;
 
 import org.springframework.social.security.SocialUser;
 
@@ -23,9 +24,14 @@ public class SocialUserWithId extends SocialUser {
     }
 
 
+    public UUID getUserUUId() {
+        return account.getId();
+    }
+
+
     @Override
     public String getUserId() {
-        return account.getId().toString();
+        return getUserUUId().toString();
     }
 
 
