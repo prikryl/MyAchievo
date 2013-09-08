@@ -8,19 +8,26 @@
 
     <http security="none" pattern="/favicon.ico" />
 
-    <http auto-config='true'>
-        <intercept-url pattern="/login/" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+    <http auto-config='true' use-expressions="true">
+<!--         <intercept-url pattern="/login" access="permitAll()" /> -->
+        <intercept-url pattern="/**" access="isAuthenticated()" />
 <!--         <form-login login-page="/login/" authentication-failure-url="/login/?error=true" /> -->
+        <logout logout-url="/logout" />
+<!--         <form-login login-page="/login" /> -->
     </http>
 
+<!--     <authentication-manager > -->
+<!--         <authentication-provider> -->
+<!--             <user-service> -->
+<!--                 <user name="user" password="user" authorities="ROLE_USER" /> -->
+<!--                 <user name="admin" password="admin" authorities="ROLE_ADMIN, ROLE_USER" /> -->
+<!--             </user-service> -->
+<!--         </authentication-provider> -->
+<!--     </authentication-manager> -->
+
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="user" authorities="ROLE_USER" />
-                <user name="admin" password="admin" authorities="ROLE_ADMIN, ROLE_USER" />
-            </user-service>
-        </authentication-provider>
+        <authentication-provider ref="authenticationProvider" />
     </authentication-manager>
 
+    <beans:bean id="authenticationProvider" class="cz.admin24.myachievo.web2.security.AchievoAuthenticationProvider" />
 </beans:beans>

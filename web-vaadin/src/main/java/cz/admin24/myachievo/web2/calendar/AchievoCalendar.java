@@ -1,6 +1,7 @@
 package cz.admin24.myachievo.web2.calendar;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.stereotype.Component;
 
 import ru.xpoft.vaadin.VaadinView;
@@ -23,7 +24,7 @@ public class AchievoCalendar extends VerticalLayout implements View {
         buildLayout();
         css();
         localize();
-
+//        DaoAuthenticationProvider
     }
 
 
