@@ -2,6 +2,8 @@ package cz.admin24.myachievo.connector.http.dto;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -25,6 +27,14 @@ public class WorkReport {
         this.remark = remark;
         this.hours = hours;
         this.minutes = minutes;
+    }
+
+
+    /**
+     * @return project name without achievo prefix! IPPE1301: ČS - RDS Rozvoj 2013 - IPPE1301
+     */
+    public String getProjectClean() {
+        return StringUtils.substringAfter(getProject(), ": ");
     }
 
 
@@ -71,5 +81,20 @@ public class WorkReport {
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE, false, false);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof WorkReport)) {
+            return false;
+        }
+        return EqualsBuilder.reflectionEquals(id, ((WorkReport) obj).getId());
     }
 }

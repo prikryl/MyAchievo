@@ -25,7 +25,10 @@
 
     <bean class="ru.xpoft.vaadin.VaadinMessageSource" />
 
-    <import resource="security.xml"/>
+    <bean class="cz.admin24.myachievo.web2.SpringUtils" />
+
+    <import resource="security.xml" />
+    <import resource="services.xml" />
 
     <context:annotation-config />
     <context:component-scan base-package="cz.admin24.myachievo.web2" />

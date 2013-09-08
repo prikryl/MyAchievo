@@ -7,10 +7,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 public class AchievoAuthenticationToken extends UsernamePasswordAuthenticationToken {
 
     private static final long serialVersionUID = 1L;
+    private final String      password;
 
 
     public AchievoAuthenticationToken(String username, String password) {
         super(username, password, Collections.EMPTY_LIST);
+        this.password = password;
     }
 
 
@@ -20,6 +22,6 @@ public class AchievoAuthenticationToken extends UsernamePasswordAuthenticationTo
 
 
     public String getPassword() {
-        return (String) getCredentials();
+        return password;
     }
 }
