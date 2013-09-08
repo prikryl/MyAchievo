@@ -10,3 +10,5 @@ web/src/main/resources/secrets.properties
 web/.project
 web/src/main/java/rebel.xml
 web/.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch
+web-vaadin/src/main/webapp/VAADIN/widgetsets/*
+web-vaadin/src/main/webapp/VAADIN/gwt-unitCache/*
