@@ -100,7 +100,7 @@ public class CmdGetWorkReport {
         // "Date";"User-id";"Phase";"Project";"Activity";"Remark";"Time";"Functionlevel";"Employer";
         Date date = parseDate(tokenArray[0]);
         String phase = tokenArray[2];
-        String project = tokenArray[3];
+        String project = StringUtils.substringAfter(tokenArray[3], ": ");
         String activity = tokenArray[4];
         String remark = tokenArray[5];
         Integer hours = parseHours(tokenArray[6]);

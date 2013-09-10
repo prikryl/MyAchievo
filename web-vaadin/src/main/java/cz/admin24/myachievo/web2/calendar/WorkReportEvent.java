@@ -18,10 +18,12 @@ public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
     private final List<EventChangeListener> eventChangeListeners = Lists.newLinkedList();
     // this object could be exchanged if report is changed!
     private WorkReport                      report;
+    private final int                       timeBase;
 
 
-    public WorkReportEvent(WorkReport report) {
+    public WorkReportEvent(WorkReport report, int timeBase) {
         this.report = report;
+        this.timeBase = timeBase;
     }
 
 
@@ -44,9 +46,7 @@ public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
     @Override
     public Date getStart() {
         Date day = report.getDate();
-        // but work usually start at 8
-        return DateUtils.addHours(day, 8);
-        // TODO add report sequence support
+        return DateUtils.addMinutes(day, timeBase);
     }
 
 
@@ -55,6 +55,7 @@ public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
         Calendar c = Calendar.getInstance();
         c.setTime(getStart());
         c.add(Calendar.HOUR, report.getHours());
+        c.add(Calendar.MINUTE, report.getMinutes());
         return c.getTime();
     }
 

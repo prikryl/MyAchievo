@@ -1,6 +1,7 @@
 package cz.admin24.myachievo.web2.service;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,19 +25,32 @@ import cz.admin24.myachievo.connector.http.dto.WorkReport;
  *
  */
 public class AchievoConnectorWrapper {
-    private static final Logger    LOG = LoggerFactory.getLogger(AchievoConnectorWrapper.class);
+    private static final Logger   LOG                  = LoggerFactory.getLogger(AchievoConnectorWrapper.class);
 
-    private final AchievoConnector connector;
+    private static final int      DEFAULT_HISTORY_DAYS = 40;
+
+    public final AchievoConnector connector;
+    public final WorkReportCache  workReportCache;
 
 
     protected AchievoConnectorWrapper() {
         // only for AOP proxy Use!
-        this(null);
+        this.connector = null;
+        this.workReportCache = null;
     }
 
 
-    public AchievoConnectorWrapper(AchievoConnector connector) {
+    public AchievoConnectorWrapper(AchievoConnector connector, WorkReportCache workReportCache) {
         this.connector = connector;
+        this.workReportCache = workReportCache;
+        if (!workReportCache.isInitialized()) {
+            Calendar c = Calendar.getInstance();
+            Date to = c.getTime();
+            c.add(Calendar.DAY_OF_YEAR, -DEFAULT_HISTORY_DAYS);
+            Date from = c.getTime();
+            // initialize work report cache
+            workReportCache.initialize(getHours(from, to));
+        }
     }
 
 
@@ -84,7 +98,25 @@ public class AchievoConnectorWrapper {
     public List<WorkReport> registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IllegalStateException,
             AccessDeniedException {
         try {
-            return connector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            List<WorkReport> ret = connector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            workReportCache.put(ret);
+            return ret;
+        } catch (AuthentizationException e) {
+            handleException(e);
+        } catch (IOException e) {
+            handleException(e);
+        }
+        return null;
+    }
+
+
+    public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+            throws IllegalStateException,
+            AccessDeniedException {
+        try {
+            List<WorkReport> ret = connector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
+            workReportCache.put(ret);
+            return ret;
         } catch (AuthentizationException e) {
             handleException(e);
         } catch (IOException e) {
@@ -117,4 +149,5 @@ public class AchievoConnectorWrapper {
         throw new IllegalStateException("Failed to call achievo, IO exception occurred.", e);
 
     }
+
 }

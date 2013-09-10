@@ -25,7 +25,7 @@ public class PersistentConnection {
     private static final Logger  LOG                   = LoggerFactory.getLogger(PersistentConnection.class);
 
     private static final int     CONNECT_TIMEOUT       = 15000 /* milliseconds */;
-    private static final int     READ_TIMEOUT          = 15000 /* milliseconds */;
+    private static final int     READ_TIMEOUT          = 35000 /* milliseconds */;
     private static final String  CHARSET               = "utf-8";
     private static final int     MAX_RECONNECT_COUNT   = 5;
     private static final Pattern USER_INFO_PATTERN     = Pattern

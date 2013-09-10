@@ -121,4 +121,12 @@ public class AchievoConnectorImpl implements AchievoConnector {
         return persistentConnection;
     }
 
+
+    public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+            throws AuthentizationException, IOException {
+        PersistentConnection connection = getConnection();
+        new CmdRegisterHours(workReportId, connection.getUserId(), day, hours, minutes, projectId, phaseId, activityId, remark).execute(connection);
+        return getHours(day, day);
+    }
+
 }

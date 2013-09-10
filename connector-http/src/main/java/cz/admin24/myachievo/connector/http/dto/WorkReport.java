@@ -1,21 +1,21 @@
 package cz.admin24.myachievo.connector.http.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class WorkReport {
-    private final String  id;
-    private final Date    date;
-    private final String  project;
-    private final String  phase;
-    private final String  activity;
-    private final String  remark;
-    private final Integer hours;
-    private final Integer minutes;
+public class WorkReport implements Serializable {
+    private final String id;
+    private Date         date;
+    private String       project;
+    private String       phase;
+    private String       activity;
+    private String       remark;
+    private Integer      hours;
+    private Integer      minutes;
 
 
     public WorkReport(String id, Date date, String project, String phase, String activity, String remark, Integer hours, Integer minutes) {
@@ -27,14 +27,6 @@ public class WorkReport {
         this.remark = remark;
         this.hours = hours;
         this.minutes = minutes;
-    }
-
-
-    /**
-     * @return project name without achievo prefix! IPPE1301: ČS - RDS Rozvoj 2013 - IPPE1301
-     */
-    public String getProjectClean() {
-        return StringUtils.substringAfter(getProject(), ": ");
     }
 
 
@@ -75,6 +67,41 @@ public class WorkReport {
 
     public Integer getMinutes() {
         return minutes;
+    }
+
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+
+    public void setPhase(String phase) {
+        this.phase = phase;
+    }
+
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+
+    public void setHours(Integer hours) {
+        this.hours = hours;
+    }
+
+
+    public void setMinutes(Integer minutes) {
+        this.minutes = minutes;
     }
 
 

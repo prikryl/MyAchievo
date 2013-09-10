@@ -72,7 +72,8 @@ public class CmdGetWorkReportFromHtml {
 
             String id = trim(StringUtils.substringBetween(cols[0], "hoursbase.id='", "'"));
             Date date = parseDate(trim(StringUtils.substringAfter(cols[2], ">")));
-            String project = trim(StringUtils.substringAfter(cols[3], ">"));
+            String project = StringUtils.substringAfter(trim(StringUtils.substringAfter(cols[3], ">")), ": ");
+            ;
             String phase = trim(StringUtils.substringAfter(cols[4], ">"));
             String activity = trim(StringUtils.substringAfter(cols[6], ">"));
             String remark = trim(StringUtils.substringAfter(cols[7], ">"));

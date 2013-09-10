@@ -22,7 +22,7 @@ import cz.admin24.myachievo.connector.http.dto.WorkReport;
 public class AchievoProxyTest extends TestCase {
     private static final Logger LOG              = LoggerFactory.getLogger(AchievoProxyTest.class);
     private static final String USERNAME         = "pprikryl";
-    private static final String PASSWORD_OK      = "AAA_VALID_AAA";
+    private static final String PASSWORD_OK      = "UniC5701";
     private static final String PASSWORD_INVALID = "in_va?Li#d";
 
 
@@ -94,6 +94,19 @@ public class AchievoProxyTest extends TestCase {
         c.add(Calendar.DAY_OF_YEAR, -18);
 
         List<WorkReport> registerHours = proxy.registerHours(c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
+
+        LOG.info("Registred hours:\n{}", registerHours);
+    }
+
+
+    @Test(enabled = false)
+    public void testEditWork() throws IOException {
+        AchievoConnector proxy = new AchievoConnectorImpl();
+        proxy.setCredentials(USERNAME, PASSWORD_OK);
+        Calendar c = Calendar.getInstance();
+        // c.add(Calendar.DAY_OF_YEAR, -18);
+
+        List<WorkReport> registerHours = proxy.updateRegiteredHours("745006_PICK_NEW ONE", c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
 
         LOG.info("Registred hours:\n{}", registerHours);
     }

@@ -33,6 +33,11 @@ public interface AchievoConnector {
             IOException;
 
 
+    List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+            throws AuthentizationException,
+            IOException;
+
+
     List<WorkReport> getHours(Date from, Date to) throws AuthentizationException, IOException;
 
 }
