@@ -138,6 +138,17 @@ public class AchievoConnectorWrapper {
     }
 
 
+    public void deleteRegisteredHour(String workReportId) throws IllegalStateException, AccessDeniedException {
+        try {
+            connector.deleteRegisteredHour(workReportId);
+        } catch (AuthentizationException e) {
+            handleException(e);
+        } catch (IOException e) {
+            handleException(e);
+        }
+    }
+
+
     private void handleException(AuthentizationException e) throws AccessDeniedException {
         LOG.error("User {} has no permission to call this method with used credentials", SecurityContextHolder.getContext().getAuthentication(), e);
         throw new AccessDeniedException("User has no permission to call this method with used credentials", e);

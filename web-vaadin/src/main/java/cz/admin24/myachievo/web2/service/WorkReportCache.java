@@ -1,5 +1,6 @@
 package cz.admin24.myachievo.web2.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,7 +18,7 @@ import cz.admin24.myachievo.connector.http.dto.WorkReport;
 
 @Repository
 @Scope("session")
-public class WorkReportCache {
+public class WorkReportCache implements Serializable {
 
     private static final Comparator<WorkReport> WORK_REPORT_ORDER_COMPARATOR = new Comparator<WorkReport>() {
 

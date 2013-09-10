@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.admin24.myachievo.connector.http.cmd.CmdDeleteRegisteredHours;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetPhaseActivities;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjectPhases;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjects;
@@ -117,11 +118,14 @@ public class AchievoConnectorImpl implements AchievoConnector {
     }
 
 
-    private PersistentConnection getConnection() {
-        return persistentConnection;
-    }
-
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * cz.admin24.myachievo.connector.http.AchievoConnector#updateRegiteredHours(java.lang.String,
+     * java.util.Date, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String,
+     * java.lang.String, java.lang.String)
+     */
     public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
             throws AuthentizationException, IOException {
         PersistentConnection connection = getConnection();
@@ -129,4 +133,20 @@ public class AchievoConnectorImpl implements AchievoConnector {
         return getHours(day, day);
     }
 
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * cz.admin24.myachievo.connector.http.AchievoConnector#deleteRegisteredHours(java.lang.String)
+     */
+    public void deleteRegisteredHour(String workReportId) throws AuthentizationException, IOException {
+        PersistentConnection connection = getConnection();
+        new CmdDeleteRegisteredHours(workReportId).execute(connection);
+    }
+
+
+    private PersistentConnection getConnection() {
+        return persistentConnection;
+    }
 }

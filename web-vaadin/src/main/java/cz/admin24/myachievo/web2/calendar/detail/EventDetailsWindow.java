@@ -1,12 +1,13 @@
 package cz.admin24.myachievo.web2.calendar.detail;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.tuple.Pair;
+import org.eclipse.jdt.internal.core.SetVariablesOperation;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -33,8 +34,9 @@ import cz.admin24.myachievo.web2.SpringUtils;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.service.ProjectsCache;
 import cz.admin24.myachievo.web2.service.WorkReportCache;
+import cz.admin24.myachievo.web2.utils.TimesheetUtils;
 
-public class EventDetailsWindow extends Window {
+public abstract class EventDetailsWindow extends Window {
     private static final long             serialVersionUID    = 1L;
     private static final Object           PROPERTY_ID         = "ID";
     private final VerticalLayout          content             = new VerticalLayout();
@@ -74,7 +76,7 @@ public class EventDetailsWindow extends Window {
     }
 
 
-    public void commit() {
+    public List<WorkReport> commit() {
         form.commit();
         Date day = dayDateField.getValue();
         Integer hours = (Integer) hoursCombo.getValue();
@@ -84,12 +86,18 @@ public class EventDetailsWindow extends Window {
         String activityId = getSelectedId(activityCombo);
         String remark = (String) remarkAutoComplete.getValue();
         String workReportId = workReport.getId();
+        List<WorkReport> ret;
         if (workReportId == null) {
-            achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            ret = achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
         } else {
-            achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
+            ret = achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
         }
+        onEventChanged();
+        return ret;
     }
+
+
+    protected abstract void onEventChanged();
 
 
     private void buildLayout() {
@@ -153,6 +161,8 @@ public class EventDetailsWindow extends Window {
         if (minutes != null) {
             minutesCombo.setValue(minutes);
         }
+
+        deleteBtn.setEnabled(r.getId() != null);
     }
 
 
@@ -331,26 +341,46 @@ public class EventDetailsWindow extends Window {
             @Override
             public void buttonClick(ClickEvent event) {
                 if (form.isValid()) {
-                    // commit();
+                    List<WorkReport> reportedHours = commit();
+                    Pair<Integer, Integer> hoursMinutes = TimesheetUtils.countRemainingTime(reportedHours);
 
-                    Calendar c = Calendar.getInstance();
-                    c.setTime(dayDateField.getValue());
+                    if (hoursMinutes.getKey() <= 0 && hoursMinutes.getValue() <= 0) {
+                        // go to the next day
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(dayDateField.getValue());
 
-                    int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-                    switch (dayOfWeek) {
-                    case Calendar.FRIDAY:
-                        c.add(Calendar.DAY_OF_YEAR, 3);
-                        break;
-                    case Calendar.SATURDAY:
-                        c.add(Calendar.DAY_OF_YEAR, 2);
-                        break;
-                    default:
-                        c.add(Calendar.DAY_OF_YEAR, 1);
-                        break;
+                        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+                        switch (dayOfWeek) {
+                        case Calendar.FRIDAY:
+                            c.add(Calendar.DAY_OF_YEAR, 3);
+                            break;
+                        case Calendar.SATURDAY:
+                            c.add(Calendar.DAY_OF_YEAR, 2);
+                            break;
+                        default:
+                            c.add(Calendar.DAY_OF_YEAR, 1);
+                            break;
+                        }
+                        dayDateField.setValue(c.getTime());
+                        Pair<Integer, Integer> newHoursMinutes = TimesheetUtils.countRemainingTime(hoursMinutes);
+                        hoursCombo.setValue(newHoursMinutes.getKey());
+                        minutesCombo.setValue(newHoursMinutes.getValue());
+                    } else {
+                        hoursCombo.setValue(hoursMinutes.getKey());
+                        minutesCombo.setValue(hoursMinutes.getValue());
                     }
 
-                    dayDateField.setValue(c.getTime());
                 }
+            }
+        });
+
+        deleteBtn.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                achievoConnector.deleteRegisteredHour(workReport.getId());
+                onEventChanged();
+                close();
             }
         });
     }

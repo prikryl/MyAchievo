@@ -63,8 +63,7 @@ public class AchievoCalendar extends VerticalLayout implements View {
                 WorkReportEvent calendarEvent = (WorkReportEvent) event.getCalendarEvent();
                 EventDetailsWindow eventDetailsWindow = new EventDetailsWindow(calendarEvent.getWorkReport()) {
                     @Override
-                    public void commit() {
-                        super.commit();
+                    protected void onEventChanged() {
                         calendar.markAsDirty();
                     }
                 };
@@ -133,8 +132,7 @@ public class AchievoCalendar extends VerticalLayout implements View {
 
                 EventDetailsWindow eventDetailsWindow = new EventDetailsWindow(workReport) {
                     @Override
-                    public void commit() {
-                        super.commit();
+                    protected void onEventChanged() {
                         calendar.markAsDirty();
                     }
                 };
@@ -142,6 +140,8 @@ public class AchievoCalendar extends VerticalLayout implements View {
 
             }
         });
+
+//        calendar.addli
     }
 
 

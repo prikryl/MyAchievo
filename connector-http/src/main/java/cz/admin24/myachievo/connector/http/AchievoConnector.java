@@ -38,6 +38,9 @@ public interface AchievoConnector {
             IOException;
 
 
+    void deleteRegisteredHour(String workReportId) throws AuthentizationException, IOException;
+
+
     List<WorkReport> getHours(Date from, Date to) throws AuthentizationException, IOException;
 
 }
