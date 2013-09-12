@@ -18,6 +18,7 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.Reindeer;
 
 import cz.admin24.myachievo.web2.calendar.AchievoCalendar;
 
@@ -34,6 +35,7 @@ public class WebUI extends UI implements ErrorHandler
         DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
         VaadinSession.getCurrent().setErrorHandler(this);
         setSizeFull();
+        setStyleName(Reindeer.LAYOUT_WHITE);
 
         // Navigator navigator = new Navigator(this, this);
 

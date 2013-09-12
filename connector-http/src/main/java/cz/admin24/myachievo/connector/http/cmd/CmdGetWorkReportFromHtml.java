@@ -70,14 +70,20 @@ public class CmdGetWorkReportFromHtml {
         for (String row : rows) {
             String[] cols = StringUtils.substringsBetween(row, "<td valign=\"top", "</td>");
 
-            String id = trim(StringUtils.substringBetween(cols[0], "hoursbase.id='", "'"));
-            Date date = parseDate(trim(StringUtils.substringAfter(cols[2], ">")));
-            String project = StringUtils.substringAfter(trim(StringUtils.substringAfter(cols[3], ">")), ": ");
-            ;
-            String phase = trim(StringUtils.substringAfter(cols[4], ">"));
-            String activity = trim(StringUtils.substringAfter(cols[6], ">"));
-            String remark = trim(StringUtils.substringAfter(cols[7], ">"));
-            String time = trim(StringUtils.substringAfter(cols[8], ">"));
+            String id = "NOT_KNOWN";
+            int base = 0;
+            if (cols.length >= 12) {
+                // it has edit support, this record is RW for achievo
+                id = trim(StringUtils.substringBetween(cols[0], "hoursbase.id='", "'"));
+                base = 1;
+            }
+            Date date = parseDate(trim(StringUtils.substringAfter(cols[base + 1], ">")));
+            String project = StringUtils.substringAfter(trim(StringUtils.substringAfter(cols[base + 2], ">")), ": ");
+
+            String phase = trim(StringUtils.substringAfter(cols[base + 3], ">"));
+            String activity = trim(StringUtils.substringAfter(cols[base + 5], ">"));
+            String remark = trim(StringUtils.substringAfter(cols[base + 6], ">"));
+            String time = trim(StringUtils.substringAfter(cols[base + 7], ">"));
             Integer hours = parseHours(time);
             Integer minutes = parseMinutes(time);
 

@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -7,7 +7,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.4";
+	content: "7.1.5";
 }
 
 .v-generated-body {
@@ -7002,4 +7002,20 @@ body .mytheme.v-app .v-app-loading {
 	border: none;
 	background: transparent repeat-x;
 	background-image: url(../reindeer/window/img/black/content-bg.png);/** sprite-ref: black-verticals; sprite-alignment: repeat */
+}
+
+.mytheme.v-app {
+	background: white;
+}
+
+.mytheme .v-loading-indicator, .mytheme .v-loading-indicator-delay, .mytheme .v-loading-indicator-wait {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-position: 50%;
+	background-color: white;
+	opacity: 0.4;
+	-ms-filter: alpha(opacity=40);
+	filter: alpha(opacity=40);
+	background-repeat: no-repeat;
 }
