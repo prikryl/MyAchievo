@@ -1,7 +1,9 @@
 package cz.admin24.myachievo.web2.calendar;
 
 import java.util.Date;
+import java.util.TimeZone;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.joda.time.DateTime;
@@ -14,15 +16,15 @@ import ru.xpoft.vaadin.VaadinView;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Page;
+import com.vaadin.server.WebBrowser;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Calendar;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Link;
+import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.BackwardEvent;
@@ -53,18 +55,18 @@ import cz.admin24.myachievo.web2.service.ProjectsCache;
 
 @Component
 @Scope("prototype")
-@VaadinView(AchievoCalendar.NAME)
-public class AchievoCalendar extends VerticalLayout implements View {
+@VaadinView(CalendarView.NAME)
+public class CalendarView extends VerticalLayout implements View {
     private static final long       serialVersionUID = 1L;
     public static final String      NAME             = "";
     private final Calendar          calendar         = new Calendar();
     private final HorizontalLayout  buttonsLayout    = new HorizontalLayout();
-    private final Button            nextBtn          = new Button("Next");
-    private final Button            prevBtn          = new Button("Prev");
-    private final Link              todayBtn         = new Link("Today", null);
-    private final Link              dailyBtn         = new Link("Daily", null);
-    private final Link              weeklyBtn        = new Link("Weekly", null);
-    private final Link              monthlyBtn       = new Link("Monthly", null);
+    private final NativeButton      nextBtn          = new NativeButton("Next");
+    private final NativeButton      prevBtn          = new NativeButton("Prev");
+    private final Button            todayBtn         = new Button("Today");
+    private final Button            dailyBtn         = new Button("Daily");
+    private final Button            weeklyBtn        = new Button("Weekly");
+    private final Button            monthlyBtn       = new Button("Monthly");
 
     @Autowired
     private AchievoConnectorWrapper achievoConnector;
@@ -75,7 +77,7 @@ public class AchievoCalendar extends VerticalLayout implements View {
     // @Autowired
     // private Navigator navigator;
 
-    public AchievoCalendar() {
+    public CalendarView() {
         buildLayout();
         configure();
         css();
@@ -97,7 +99,7 @@ public class AchievoCalendar extends VerticalLayout implements View {
                         calendar.markAsDirty();
                     }
                 };
-                AchievoCalendar.this.getUI().addWindow(eventDetailsWindow);
+                CalendarView.this.getUI().addWindow(eventDetailsWindow);
             }
         });
 
@@ -236,18 +238,63 @@ public class AchievoCalendar extends VerticalLayout implements View {
             }
         });
 
+        dailyBtn.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                CalendarUrl url = getUrl();
+                url.setType(CalendarViewType.DAY);
+                navigateTo(url);
+            }
+        });
+
+        weeklyBtn.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                CalendarUrl url = getUrl();
+                url.setType(CalendarViewType.WEEK);
+                navigateTo(url);
+            }
+        });
+
+        monthlyBtn.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                CalendarUrl url = getUrl();
+                url.setType(CalendarViewType.MONTH);
+                navigateTo(url);
+            }
+        });
+
+        todayBtn.addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                CalendarUrl url = getUrl();
+                url.setDate(new Date());
+                navigateTo(url);
+            }
+        });
+
         // calendar.set
     }
 
 
     private void localize() {
-        // TODO Auto-generated method stub
-
+        WebBrowser browser = Page.getCurrent().getWebBrowser();
+        int rawTimezoneOffset = browser.getTimezoneOffset();
+        String[] possibleTimeZones = TimeZone.getAvailableIDs(rawTimezoneOffset);
+        if (!ArrayUtils.isEmpty(possibleTimeZones)) {
+            calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
+        }
     }
 
 
     private void css() {
         setSizeFull();
+        // addStyleName("schedule");
 
         setExpandRatio(calendar, 1);
 
@@ -299,19 +346,6 @@ public class AchievoCalendar extends VerticalLayout implements View {
 
 
     private void refresh() {
-        CalendarUrl url = getUrl();
-
-        url.setType(CalendarViewType.DAY);
-        dailyBtn.setResource(new ExternalResource(url.toUrl()));
-
-        url.setType(CalendarViewType.WEEK);
-        weeklyBtn.setResource(new ExternalResource(url.toUrl()));
-
-        url.setType(CalendarViewType.MONTH);
-        monthlyBtn.setResource(new ExternalResource(url.toUrl()));
-
-        url = new CalendarUrl();
-        todayBtn.setResource(new ExternalResource(url.toUrl()));
 
     }
 

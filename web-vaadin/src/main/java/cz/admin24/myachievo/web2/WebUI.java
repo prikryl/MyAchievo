@@ -13,6 +13,8 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
@@ -20,20 +22,22 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.Reindeer;
 
-import cz.admin24.myachievo.web2.calendar.AchievoCalendar;
+import cz.admin24.myachievo.web2.base.BaseLayout;
+import cz.admin24.myachievo.web2.calendar.CalendarView;
 
-@Theme("mytheme")
+@Theme("dashboard")
 @SuppressWarnings("serial")
 @Component("webUI")
 @Scope("prototype")
-public class WebUI extends UI implements ErrorHandler
-{
-    private final AchievoCalendar achievoCalendar = new AchievoCalendar();
+public class WebUI extends UI implements ErrorHandler {
+    // private final AchievoCalendar achievoCalendar = new AchievoCalendar();
+    private final BaseLayout baseLayout = new BaseLayout();
 
 
     public WebUI() {
-        DiscoveryNavigator navigator = new DiscoveryNavigator(this, this);
+        DiscoveryNavigator navigator = new DiscoveryNavigator(this, baseLayout.getContent());
         VaadinSession.getCurrent().setErrorHandler(this);
+        setContent(baseLayout);
         setSizeFull();
         setStyleName(Reindeer.LAYOUT_WHITE);
 
@@ -59,7 +63,7 @@ public class WebUI extends UI implements ErrorHandler
         // final VerticalLayout layout = new VerticalLayout();
         // layout.setMargin(true);
         // setContent(layout);
-
+        //
         // Button button = new Button("Click Me");
         // button.addClickListener(new Button.ClickListener() {
         // public void buttonClick(ClickEvent event) {

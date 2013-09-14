@@ -59,7 +59,7 @@ public class CalendarUrl {
 
 
     public String toFragment() {
-        return AchievoCalendar.NAME + "/" + type + "/" + date.getTime();
+        return CalendarView.NAME + "/" + type + "/" + date.getTime();
     }
 
 
