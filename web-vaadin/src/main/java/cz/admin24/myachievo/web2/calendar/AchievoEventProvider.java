@@ -39,13 +39,13 @@ public class AchievoEventProvider implements CalendarEventProvider {
         int timeBase = WORK_DAY_TIME_BASE;
         Date actualDay = new Date(0);
         for (WorkReport report : hours) {
-            if(!DateUtils.isSameDay(actualDay, report.getDate())){
+            if (!DateUtils.isSameDay(actualDay, report.getDate())) {
                 timeBase = WORK_DAY_TIME_BASE;
-                actualDay= report.getDate();
+                actualDay = report.getDate();
             }
             ret.add(new WorkReportEvent(report, timeBase));
 
-            timeBase+=report.getHours()*60+report.getMinutes();
+            timeBase += report.getHours() * 60 + report.getMinutes();
         }
 
         return ret;

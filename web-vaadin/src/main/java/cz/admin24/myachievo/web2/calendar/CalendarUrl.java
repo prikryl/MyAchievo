@@ -68,6 +68,11 @@ public class CalendarUrl {
     }
 
 
+    public Date getDate() {
+        return date;
+    }
+
+
     public Date getStartDate() {
         switch (type) {
         case MONTH:

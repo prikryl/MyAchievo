@@ -6,25 +6,24 @@ import java.util.TimeZone;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.Minutes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import ru.xpoft.vaadin.VaadinView;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.WebBrowser;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Calendar;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
+import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
+import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.BackwardEvent;
@@ -48,30 +47,37 @@ import cz.admin24.myachievo.connector.http.dto.PhaseActivity;
 import cz.admin24.myachievo.connector.http.dto.Project;
 import cz.admin24.myachievo.connector.http.dto.ProjectPhase;
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
+import cz.admin24.myachievo.web2.SpringUtils;
 import cz.admin24.myachievo.web2.calendar.CalendarUrl.CalendarViewType;
 import cz.admin24.myachievo.web2.calendar.detail.EventDetailsWindow;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.service.ProjectsCache;
 
-@Component
-@Scope("prototype")
-@VaadinView(CalendarView.NAME)
+//@Component
+//@Scope("prototype")
+//@VaadinView(CalendarView.NAME)
 public class CalendarView extends VerticalLayout implements View {
     private static final long       serialVersionUID = 1L;
     public static final String      NAME             = "";
+    private final FastDateFormat    dayFormat        = FastDateFormat.getDateInstance(FastDateFormat.SHORT, UI.getCurrent().getLocale());
+    private final FastDateFormat    weekFormat       = FastDateFormat.getInstance("w", UI.getCurrent().getLocale());
+    private final FastDateFormat    monthFormat      = FastDateFormat.getInstance("MMMM", UI.getCurrent().getLocale());
+    private final CssLayout         dailyTab         = new TypeTab("Daily");
+    private final CssLayout         weeklyTab        = new TypeTab("Weekly");
+    private final CssLayout         monthlyTab       = new TypeTab("Monthly");
+    private final CssLayout         todayTab         = new TypeTab("Today");
+    private final TabSheet          tabSheet         = new TabSheet(todayTab, dailyTab, weeklyTab, monthlyTab);
     private final Calendar          calendar         = new Calendar();
     private final HorizontalLayout  buttonsLayout    = new HorizontalLayout();
-    private final NativeButton      nextBtn          = new NativeButton("Next");
-    private final NativeButton      prevBtn          = new NativeButton("Prev");
-    private final Button            todayBtn         = new Button("Today");
-    private final Button            dailyBtn         = new Button("Daily");
-    private final Button            weeklyBtn        = new Button("Weekly");
-    private final Button            monthlyBtn       = new Button("Monthly");
+    private final NativeButton      nextBtn          = new NativeButton();
+    private final NativeButton      prevBtn          = new NativeButton();
+    // private final Button todayBtn = new Button("Today");
+    // private final Button dailyBtn = new Button("Daily");
+    // private final Button weeklyBtn = new Button("Weekly");
+    // private final Button monthlyBtn = new Button("Monthly");
 
-    @Autowired
-    private AchievoConnectorWrapper achievoConnector;
-    @Autowired
-    private ProjectsCache           projectsCache;
+    private AchievoConnectorWrapper achievoConnector = SpringUtils.getBean(AchievoConnectorWrapper.class);
+    private ProjectsCache           projectsCache    = SpringUtils.getBean(ProjectsCache.class);
 
 
     // @Autowired
@@ -81,8 +87,14 @@ public class CalendarView extends VerticalLayout implements View {
         buildLayout();
         configure();
         css();
-        localize();
         // DaoAuthenticationProvider
+    }
+
+
+    @Override
+    public void attach() {
+        super.attach();
+        localize();
     }
 
 
@@ -238,45 +250,73 @@ public class CalendarView extends VerticalLayout implements View {
             }
         });
 
-        dailyBtn.addClickListener(new ClickListener() {
+        tabSheet.addSelectedTabChangeListener(new SelectedTabChangeListener() {
 
             @Override
-            public void buttonClick(ClickEvent event) {
+            public void selectedTabChange(SelectedTabChangeEvent event) {
+                com.vaadin.ui.Component tab = tabSheet.getSelectedTab();
                 CalendarUrl url = getUrl();
-                url.setType(CalendarViewType.DAY);
+
+                if (todayTab == tab) {
+                    url.setDate(new Date());
+                    // url.setType(CalendarViewType.DAY);
+                }
+
+                if (dailyTab == tab) {
+                    url.setType(CalendarViewType.DAY);
+                }
+
+                if (weeklyTab == tab) {
+                    url.setType(CalendarViewType.WEEK);
+                }
+
+                if (monthlyTab == tab) {
+                    url.setType(CalendarViewType.MONTH);
+                }
+
                 navigateTo(url);
             }
         });
 
-        weeklyBtn.addClickListener(new ClickListener() {
+        // dailyBtn.addClickListener(new ClickListener() {
+        //
+        // @Override
+        // public void buttonClick(ClickEvent event) {
+        // CalendarUrl url = getUrl();
+        // url.setType(CalendarViewType.DAY);
+        // navigateTo(url);
+        // }
+        // });
+        //
+        // weeklyBtn.addClickListener(new ClickListener() {
+        //
+        // @Override
+        // public void buttonClick(ClickEvent event) {
+        // CalendarUrl url = getUrl();
+        // url.setType(CalendarViewType.WEEK);
+        // navigateTo(url);
+        // }
+        // });
+        //
+        // monthlyBtn.addClickListener(new ClickListener() {
+        //
+        // @Override
+        // public void buttonClick(ClickEvent event) {
+        // CalendarUrl url = getUrl();
+        // url.setType(CalendarViewType.MONTH);
+        // navigateTo(url);
+        // }
+        // });
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                CalendarUrl url = getUrl();
-                url.setType(CalendarViewType.WEEK);
-                navigateTo(url);
-            }
-        });
-
-        monthlyBtn.addClickListener(new ClickListener() {
-
-            @Override
-            public void buttonClick(ClickEvent event) {
-                CalendarUrl url = getUrl();
-                url.setType(CalendarViewType.MONTH);
-                navigateTo(url);
-            }
-        });
-
-        todayBtn.addClickListener(new ClickListener() {
-
-            @Override
-            public void buttonClick(ClickEvent event) {
-                CalendarUrl url = getUrl();
-                url.setDate(new Date());
-                navigateTo(url);
-            }
-        });
+        // todayBtn.addClickListener(new ClickListener() {
+        //
+        // @Override
+        // public void buttonClick(ClickEvent event) {
+        // CalendarUrl url = getUrl();
+        // url.setDate(new Date());
+        // navigateTo(url);
+        // }
+        // });
 
         // calendar.set
     }
@@ -289,6 +329,7 @@ public class CalendarView extends VerticalLayout implements View {
         if (!ArrayUtils.isEmpty(possibleTimeZones)) {
             calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
         }
+
     }
 
 
@@ -297,8 +338,10 @@ public class CalendarView extends VerticalLayout implements View {
         // addStyleName("schedule");
 
         setExpandRatio(calendar, 1);
+        buttonsLayout.setExpandRatio(tabSheet, 1);
 
         calendar.setSizeFull();
+        tabSheet.setWidth("100%");
         buttonsLayout.setWidth("100%");
 
         setMargin(true);
@@ -306,25 +349,33 @@ public class CalendarView extends VerticalLayout implements View {
         buttonsLayout.setSpacing(true);
 
         buttonsLayout.setComponentAlignment(prevBtn, Alignment.MIDDLE_LEFT);
-        buttonsLayout.setComponentAlignment(todayBtn, Alignment.MIDDLE_CENTER);
-        buttonsLayout.setComponentAlignment(dailyBtn, Alignment.MIDDLE_CENTER);
-        buttonsLayout.setComponentAlignment(weeklyBtn, Alignment.MIDDLE_CENTER);
-        buttonsLayout.setComponentAlignment(monthlyBtn, Alignment.MIDDLE_CENTER);
+        // buttonsLayout.setComponentAlignment(todayBtn, Alignment.MIDDLE_CENTER);
+        // buttonsLayout.setComponentAlignment(dailyBtn, Alignment.MIDDLE_CENTER);
+        // buttonsLayout.setComponentAlignment(weeklyBtn, Alignment.MIDDLE_CENTER);
+        // buttonsLayout.setComponentAlignment(monthlyBtn, Alignment.MIDDLE_CENTER);
         buttonsLayout.setComponentAlignment(nextBtn, Alignment.MIDDLE_RIGHT);
+
+        prevBtn.addStyleName("prev-next-btn");
+        nextBtn.addStyleName("prev-next-btn");
+        prevBtn.addStyleName("prev-btn");
+        nextBtn.addStyleName("next-btn");
 
     }
 
 
     private void buildLayout() {
+        // addComponent(tabSheet);
         addComponent(buttonsLayout);
         addComponent(calendar);
 
         buttonsLayout.addComponent(prevBtn);
-        buttonsLayout.addComponent(monthlyBtn);
-        buttonsLayout.addComponent(weeklyBtn);
-        buttonsLayout.addComponent(dailyBtn);
-        buttonsLayout.addComponent(todayBtn);
+        buttonsLayout.addComponent(tabSheet);
         buttonsLayout.addComponent(nextBtn);
+
+        // buttonsLayout.addComponent(monthlyBtn);
+        // buttonsLayout.addComponent(weeklyBtn);
+        // buttonsLayout.addComponent(dailyBtn);
+        // buttonsLayout.addComponent(todayBtn);
     }
 
 
@@ -341,6 +392,26 @@ public class CalendarView extends VerticalLayout implements View {
         calendar.setStartDate(url.getStartDate());
         calendar.setEndDate(url.getEndDate());
 
+        switch (url.getType()) {
+        case DAY:
+            if (DateUtils.isSameDay(url.getStartDate(), new Date())) {
+                tabSheet.setSelectedTab(todayTab);
+            } else {
+                tabSheet.setSelectedTab(dailyTab);
+            }
+            break;
+        case MONTH:
+            tabSheet.setSelectedTab(monthlyTab);
+            break;
+        case WEEK:
+            tabSheet.setSelectedTab(weeklyTab);
+            break;
+        }
+
+        Date date = url.getDate();
+        tabSheet.getTab(dailyTab).setCaption("Daily (" + dayFormat.format(date) + ")");
+        tabSheet.getTab(weeklyTab).setCaption("Weekly (" + weekFormat.format(date) + ")");
+        tabSheet.getTab(monthlyTab).setCaption("Monthly (" + monthFormat.format(date) + ")");
         refresh();
     }
 

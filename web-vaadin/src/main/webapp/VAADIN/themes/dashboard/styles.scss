@@ -35,5 +35,57 @@
 		-moz-border-radius: 0;
 		border-radius: 0;
 	}
+
+	.prev-next-btn {
+		background-color: transparent;
+		height: 20px;
+		border: none;
+		padding: 0;
+		margin: 0;
+		width: 20px;
+		overflow: hidden;
+	}
+
+	.prev-next-btn:focus {
+		border: none;
+	}
+
+	.prev-btn {
+		background: transparent url(./img/calendar/arrow.png) no-repeat 50% 0;
+	}
+
+	.next-btn {
+		background: transparent url(./img/calendar/arrowNext.png) no-repeat 50% 0;
+	}
+
+	.v-calendar-week-wrapper td:nth-child(8){
+		background-color: whitesmoke;
+	}
+	.v-calendar-week-wrapper td:nth-child(7){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-month td:nth-child(6){
+		background-color: whitesmoke;
+	}
+	.v-calendar-month td:nth-child(7){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-day-times > div:nth-child(-n+16){
+		background-color: whitesmoke;
+	}
+	.v-calendar-day-times-today > div:nth-child(n+17){
+		background-color: rgb(255, 252, 232);
+	}
+	.v-calendar-day-times > div:nth-child(n+33){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-event, .v-calendar-event-content{
+		background-color: #BEF0FA;
+	}
+
+
 }
 

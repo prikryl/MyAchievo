@@ -4,17 +4,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 
-import ru.xpoft.vaadin.DiscoveryNavigator;
-
 import com.vaadin.annotations.Theme;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.DefaultErrorHandler;
 import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
@@ -22,8 +19,11 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.Reindeer;
 
+import cz.admin24.myachievo.web2.android.AndroidView;
 import cz.admin24.myachievo.web2.base.BaseLayout;
 import cz.admin24.myachievo.web2.calendar.CalendarView;
+import cz.admin24.myachievo.web2.dashboard.DashboardView;
+import cz.admin24.myachievo.web2.reports.ReportsView;
 
 @Theme("dashboard")
 @SuppressWarnings("serial")
@@ -32,10 +32,17 @@ import cz.admin24.myachievo.web2.calendar.CalendarView;
 public class WebUI extends UI implements ErrorHandler {
     // private final AchievoCalendar achievoCalendar = new AchievoCalendar();
     private final BaseLayout baseLayout = new BaseLayout();
+    private final Navigator  navigator;
 
 
     public WebUI() {
-        DiscoveryNavigator navigator = new DiscoveryNavigator(this, baseLayout.getContent());
+        UI.setCurrent(this);
+        navigator = new Navigator(this, baseLayout.getContent());
+        navigator.addView(CalendarView.NAME, new CalendarView());
+        navigator.addView(DashboardView.NAME, new DashboardView());
+        navigator.addView(ReportsView.NAME, new ReportsView());
+        navigator.addView(AndroidView.NAME, new AndroidView());
+        // DiscoveryNavigator navigator = new DiscoveryNavigator(this, baseLayout.getContent());
         VaadinSession.getCurrent().setErrorHandler(this);
         setContent(baseLayout);
         setSizeFull();
