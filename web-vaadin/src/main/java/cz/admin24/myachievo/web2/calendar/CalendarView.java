@@ -323,12 +323,12 @@ public class CalendarView extends VerticalLayout implements View {
 
 
     private void localize() {
-        WebBrowser browser = Page.getCurrent().getWebBrowser();
-        int rawTimezoneOffset = browser.getTimezoneOffset();
-        String[] possibleTimeZones = TimeZone.getAvailableIDs(rawTimezoneOffset);
-        if (!ArrayUtils.isEmpty(possibleTimeZones)) {
-            calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
-        }
+//        WebBrowser browser = Page.getCurrent().getWebBrowser();
+//        int rawTimezoneOffset = browser.getTimezoneOffset();
+//        String[] possibleTimeZones = TimeZone.getAvailableIDs(rawTimezoneOffset);
+//        if (!ArrayUtils.isEmpty(possibleTimeZones)) {
+//            calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
+//        }
 
     }
 
