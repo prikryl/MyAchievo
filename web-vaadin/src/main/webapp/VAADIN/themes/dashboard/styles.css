@@ -6527,3 +6527,7 @@ body .dashboard.v-app .v-app-loading {
 .dashboard .v-calendar-event, .dashboard .v-calendar-event-content {
 	background-color: #BEF0FA;
 }
+
+.dashboard .v-daterange {
+	background-color: gray !important;
+}
