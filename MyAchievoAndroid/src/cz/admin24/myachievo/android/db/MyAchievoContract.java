@@ -4,7 +4,7 @@ import android.provider.BaseColumns;
 
 public class MyAchievoContract {
     public static final String   DATABASE_NAME       = "MyAchievo.db";
-    public static final Integer  DATABASE_VERSION    = 1;
+    public static final Integer  DATABASE_VERSION    = 2;
     public static final String[] SQL_CREATE_COMMANDS = new String[] { WorkReportTable.SQL_CREATE, ProjectTable.SQL_CREATE, ProjectPhaseTable.SQL_CREATE, PhaseActivityTable.SQL_CREATE };
 
 
@@ -16,6 +16,7 @@ public class MyAchievoContract {
     // ----------------------------
     public static abstract class WorkReportTable implements BaseColumns {
         public static final String TABLE_NAME           = "WorkReport";
+        public static final String COLUMN_NAME_ID       = "id";
         public static final String COLUMN_NAME_PROJECT  = "project";
         public static final String COLUMN_NAME_PHASE    = "phase";
         public static final String COLUMN_NAME_ACTIVITY = "activity";
@@ -24,9 +25,10 @@ public class MyAchievoContract {
         public static final String COLUMN_NAME_HOURS    = "hours";
         public static final String COLUMN_NAME_MINUTES  = "minutes";
         //
-        public static final String SQL_CREATE           = String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER, %s INTEGER, %s INTEGER )",
-                                                                TABLE_NAME, _ID, COLUMN_NAME_PROJECT, COLUMN_NAME_PHASE, COLUMN_NAME_ACTIVITY, COLUMN_NAME_REMARK, COLUMN_NAME_DATE,
+        public static final String SQL_CREATE           = String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER, %s INTEGER, %s INTEGER )",
+                                                                TABLE_NAME, _ID, COLUMN_NAME_PROJECT, COLUMN_NAME_ID, COLUMN_NAME_PHASE, COLUMN_NAME_ACTIVITY, COLUMN_NAME_REMARK, COLUMN_NAME_DATE,
                                                                 COLUMN_NAME_HOURS, COLUMN_NAME_MINUTES);
+        public static final String SQL_DROP             = String.format("DROP TABLE %s ", TABLE_NAME);
     }
 
     // ----------------------------

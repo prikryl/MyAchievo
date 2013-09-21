@@ -24,6 +24,7 @@ public class CmdGetWorkReports extends CmdGet<WorkReport> {
         try {
             boolean found = cursor.moveToFirst();
             while (found) {
+                String id = getString(cursor, WorkReportTable.COLUMN_NAME_ID);
                 String project = getString(cursor, WorkReportTable.COLUMN_NAME_PROJECT);
                 String phase = getString(cursor, WorkReportTable.COLUMN_NAME_PHASE);
                 String activity = getString(cursor, WorkReportTable.COLUMN_NAME_ACTIVITY);
@@ -32,7 +33,7 @@ public class CmdGetWorkReports extends CmdGet<WorkReport> {
                 Integer hours = getInteger(cursor, WorkReportTable.COLUMN_NAME_HOURS);
                 Integer minutes = getInteger(cursor, WorkReportTable.COLUMN_NAME_MINUTES);
 
-                WorkReport r = new WorkReport("", date, project, phase, activity, remark, hours, minutes);
+                WorkReport r = new WorkReport(id, date, project, phase, activity, remark, hours, minutes);
                 ret.add(r);
 
                 found = cursor.moveToNext();

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import cz.admin24.myachievo.android.db.MyAchievoContract.WorkReportTable;
 import cz.admin24.myachievo.android.db.cmd.get.CmdGet;
 import cz.admin24.myachievo.android.db.cmd.replace.CmdReplace;
 
@@ -30,6 +31,10 @@ public class MyAchievoDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion == 1) {
+            db.execSQL(WorkReportTable.SQL_DROP);
+            db.execSQL(WorkReportTable.SQL_CREATE);
+        }
     }
 
 
