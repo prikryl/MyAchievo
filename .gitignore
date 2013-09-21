@@ -5,3 +5,13 @@ connector-http/.project
 */.idea/*
 */.settings/
 MyAchievoAndroid/out/
+web/src/main/resources/secrets.properties
+*.classpath
+web/.project
+web/src/main/java/rebel.xml
+web/.externalToolBuilders/org.eclipse.wst.jsdt.core.javascriptValidator.launch
+web-vaadin/src/main/webapp/VAADIN/widgetsets/*
+web-vaadin/src/main/webapp/VAADIN/gwt-unitCache/*
+connector-http/src/main/resources/rebel.xml
+*/rebel.xml
+rebel.xml

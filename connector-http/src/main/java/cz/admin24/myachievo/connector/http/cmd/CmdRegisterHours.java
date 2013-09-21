@@ -21,6 +21,11 @@ public class CmdRegisterHours {
 
 
     public CmdRegisterHours(String personId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) {
+        this(null, personId, day, hours, minutes, projectId, phaseId, activityId, remark);
+    }
+
+
+    public CmdRegisterHours(String workReportId, String personId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) {
         try {
             dispatchUrl = new URL(dispatchUrlString);
         } catch (MalformedURLException e) {
@@ -35,11 +40,18 @@ public class CmdRegisterHours {
         // params.put("atkreturnbehaviour", "0");
         // params.put("achievo", "rvl46hd624ec0au84dejl2n7j4");
         // params.put("atkescape", "");
-        params.put("atkaction", "save");
-        params.put("atkprevaction", "admin");
         params.put("atkfieldprefix", "");
         params.put("atknodetype", "timereg.hours");
-        params.put("atkprimkey", "");
+        if (workReportId != null) {
+            params.put("id", workReportId);
+            params.put("atkprimkey", "hoursbase.id='" + workReportId + "'");
+            // params.put("atkprevaction", "edit");
+            params.put("atkaction", "update");
+        } else {
+            params.put("atkprimkey", "");
+            params.put("atkaction", "save");
+            // params.put("atkprevaction", "admin");
+        }
         params.put("userid", "person.id='" + personId + "'");
         params.put("entrydate[year]", "" + c.get(Calendar.YEAR));
         params.put("entrydate[month]", "" + (1 + c.get(Calendar.MONTH)));

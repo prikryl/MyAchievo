@@ -1,0 +1,95 @@
+/* Import all the mixins for this theme */
+@import "dashboard.scss";
+
+
+/* Font embeds and keyframe definitions need to be
+ * on the top level of the stylesheet, not nested
+ * with any selectors, so we output them here */
+@include font-open-sans;
+@include icons-fontello;
+@include dashboard-keyframes;
+
+
+/* Output the actual theme selectors */
+.dashboard {
+	@include dashboard;
+
+	.content {
+		background-color: white;
+	}
+
+	.v-window-maximizebox {
+		background: none;
+	}
+
+	.v-datefield-popupcalendar .v-datefield-button {
+		width: 24px;
+		margin-right: -24px;
+		height: 23px;
+		background: transparent;
+		border: none;
+		padding: 0;
+		background-image: url(../reindeer/datefield/img/popup-btn.png);
+		cursor: pointer;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+
+	.prev-next-btn {
+		background-color: transparent;
+		height: 20px;
+		border: none;
+		padding: 0;
+		margin: 0;
+		width: 20px;
+		overflow: hidden;
+	}
+
+	.prev-next-btn:focus {
+		border: none;
+	}
+
+	.prev-btn {
+		background: transparent url(./img/calendar/arrow.png) no-repeat 50% 0;
+	}
+
+	.next-btn {
+		background: transparent url(./img/calendar/arrowNext.png) no-repeat 50% 0;
+	}
+
+	.v-calendar-week-wrapper td:nth-child(8){
+		background-color: whitesmoke;
+	}
+	.v-calendar-week-wrapper td:nth-child(7){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-month td:nth-child(6){
+		background-color: whitesmoke;
+	}
+	.v-calendar-month td:nth-child(7){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-day-times > div:nth-child(-n+16){
+		background-color: whitesmoke;
+	}
+	.v-calendar-day-times-today > div:nth-child(n+17){
+		background-color: rgb(255, 252, 232);
+	}
+	.v-calendar-day-times > div:nth-child(n+33){
+		background-color: whitesmoke;
+	}
+
+	.v-calendar-event, .v-calendar-event-content{
+		background-color: #BEF0FA;
+	}
+
+	.v-daterange{
+		background-color: gray !important;
+	}
+
+
+}
+

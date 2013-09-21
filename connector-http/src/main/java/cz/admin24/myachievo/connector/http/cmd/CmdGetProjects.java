@@ -69,6 +69,7 @@ public class CmdGetProjects {
             tdMatcher.find();
             name = tdMatcher.group(1).trim();
             tdMatcher.find();
+            tdMatcher.find();
             coordinator = tdMatcher.group(1).trim();
             tdMatcher.find();
             begin = parseDate(tdMatcher.group(1).trim());

@@ -1,14 +1,17 @@
 package cz.admin24.myachievo.connector.http.dto;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class BaseObject {
+public class BaseObject implements Serializable {
 
-    protected final String name;
-    protected final String id;
+    private static final long serialVersionUID = 1L;
+    protected final String    name;
+    protected final String    id;
 
 
     public BaseObject(String id, String name) {

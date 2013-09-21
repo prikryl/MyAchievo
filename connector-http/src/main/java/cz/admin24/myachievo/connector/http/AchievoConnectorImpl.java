@@ -7,10 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.admin24.myachievo.connector.http.cmd.CmdDeleteRegisteredHours;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetPhaseActivities;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjectPhases;
 import cz.admin24.myachievo.connector.http.cmd.CmdGetProjects;
-import cz.admin24.myachievo.connector.http.cmd.CmdGetWorkReport;
+import cz.admin24.myachievo.connector.http.cmd.CmdGetWorkReportFromHtml;
 import cz.admin24.myachievo.connector.http.cmd.CmdRegisterHours;
 import cz.admin24.myachievo.connector.http.dto.PhaseActivity;
 import cz.admin24.myachievo.connector.http.dto.Project;
@@ -113,12 +114,39 @@ public class AchievoConnectorImpl implements AchievoConnector {
      * java.util.Date)
      */
     public List<WorkReport> getHours(Date from, Date to) throws IOException {
-        return new CmdGetWorkReport(from, to).execute(getConnection());
+        return new CmdGetWorkReportFromHtml(from, to).execute(getConnection());
+    }
+
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * cz.admin24.myachievo.connector.http.AchievoConnector#updateRegiteredHours(java.lang.String,
+     * java.util.Date, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String,
+     * java.lang.String, java.lang.String)
+     */
+    public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+            throws AuthentizationException, IOException {
+        PersistentConnection connection = getConnection();
+        new CmdRegisterHours(workReportId, connection.getUserId(), day, hours, minutes, projectId, phaseId, activityId, remark).execute(connection);
+        return getHours(day, day);
+    }
+
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * cz.admin24.myachievo.connector.http.AchievoConnector#deleteRegisteredHours(java.lang.String)
+     */
+    public void deleteRegisteredHour(String workReportId) throws AuthentizationException, IOException {
+        PersistentConnection connection = getConnection();
+        new CmdDeleteRegisteredHours(workReportId).execute(connection);
     }
 
 
     private PersistentConnection getConnection() {
         return persistentConnection;
     }
-
 }
