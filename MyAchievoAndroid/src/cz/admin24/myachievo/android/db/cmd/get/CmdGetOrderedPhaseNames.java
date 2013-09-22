@@ -18,7 +18,7 @@ public class CmdGetOrderedPhaseNames extends CmdGetOrderedNames {
 
     @Override
     protected Cursor createCursor(SQLiteDatabase db) {
-        String projectString = project.getCode() + ": " + project.getName();
+        String projectString = project.getName();
         return db.query(WorkReportTable.TABLE_NAME, new String[] { columnName }
                 , WorkReportTable.COLUMN_NAME_PROJECT + " = ?", new String[] { projectString }, null, null, WorkReportTable.COLUMN_NAME_DATE);
     }

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import cz.admin24.myachievo.android.ConstantsSP;
 import cz.admin24.myachievo.android.R;
+import cz.admin24.myachievo.android.activity.base.task.CleanCachesTask;
 import cz.admin24.myachievo.android.activity.login.LoginIntent;
 import cz.admin24.myachievo.connector.http.AchievoConnector;
 import cz.admin24.myachievo.connector.http.AchievoConnectorImpl;
@@ -39,6 +40,10 @@ public abstract class BaseActivity extends Activity {
             logout();
             return true;
         }
+        if (item.getItemId() == R.id.menu_base_clean_caches) {
+            cleanCaches();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -48,6 +53,11 @@ public abstract class BaseActivity extends Activity {
         preferences.edit().clear().apply();
 
         startActivity(new LoginIntent(this));
+    }
+
+
+    private void cleanCaches() {
+        new CleanCachesTask(this).execute();
     }
 
 

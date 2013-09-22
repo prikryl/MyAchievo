@@ -3,11 +3,7 @@ package cz.admin24.myachievo.android.activity.main.task;
 import java.io.IOException;
 import java.util.List;
 
-import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import cz.admin24.myachievo.android.activity.base.AchievoConnectorTask;
 import cz.admin24.myachievo.android.activity.base.BaseActivity;
 import cz.admin24.myachievo.android.activity.main.adapter.WorkReportsAdapter;

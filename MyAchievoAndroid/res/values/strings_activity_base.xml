@@ -5,5 +5,6 @@
     <string name="base_activity_error_occured">Unexpected error!</string>
     <string name="base_activity_error_occured_OK">OK</string>
     <string name="menu_base_logout">Logout</string>
+    <string name="menu_base_clean_caches">Clean caches</string>
 
 </resources>
