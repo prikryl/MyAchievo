@@ -27,10 +27,14 @@ public class ReportedHoursByProjectChart extends Widget {
     private final Options options;
 
 
-    public ReportedHoursByProjectChart() {
+    public ReportedHoursByProjectChart(String caption) {
         super();
-        setCaption("This month report...");
+        setCaption(caption);
         addComponent(chart);
+        chart.setHeight("300px");
+        chart.setWidth("600px");
+
+        // chart.setSizeFull();
 
         // SeriesDefaults seriesDefaults = new SeriesDefaults()
         // .setRenderer(SeriesRenderers.DONUT)

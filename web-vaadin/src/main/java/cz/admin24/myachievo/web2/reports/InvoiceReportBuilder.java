@@ -45,7 +45,6 @@ public class InvoiceReportBuilder {
             groupedValues.put(key, r);
         }
 
-        // TODO Auto-generated method stub
         StringWriter stringWriter = new StringWriter();
         CSVWriter csvWriter = new CSVWriter(stringWriter, ';');
         try {

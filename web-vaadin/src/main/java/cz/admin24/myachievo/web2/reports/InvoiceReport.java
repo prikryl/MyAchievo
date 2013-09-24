@@ -1,12 +1,14 @@
 package cz.admin24.myachievo.web2.reports;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringBufferInputStream;
+import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 
 import com.vaadin.server.FileDownloader;
@@ -131,9 +133,9 @@ public class InvoiceReport extends Widget {
 
                 @Override
                 public InputStream getStream() {
-                    return new StringBufferInputStream(data);
+                    return new ByteArrayInputStream(data.getBytes(Charset.forName("windows-1250")));
                 }
-            }, filename);
+            }, StringUtils.stripAccents(filename));
         }
 
     }

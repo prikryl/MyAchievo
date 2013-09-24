@@ -2,11 +2,15 @@ package cz.admin24.myachievo.web2.reports;
 
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.metadata.DataLabels;
-import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
-import org.dussan.vaadin.dcharts.metadata.locations.LegendLocations;
+import org.dussan.vaadin.dcharts.events.click.ChartDataClickEvent;
+import org.dussan.vaadin.dcharts.events.click.ChartDataClickHandler;
+import org.dussan.vaadin.dcharts.events.mouseenter.ChartDataMouseEnterEvent;
+import org.dussan.vaadin.dcharts.events.mouseenter.ChartDataMouseEnterHandler;
+import org.dussan.vaadin.dcharts.events.mouseleave.ChartDataMouseLeaveEvent;
+import org.dussan.vaadin.dcharts.events.mouseleave.ChartDataMouseLeaveHandler;
+import org.dussan.vaadin.dcharts.events.rightclick.ChartDataRightClickEvent;
+import org.dussan.vaadin.dcharts.events.rightclick.ChartDataRightClickHandler;
 import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
-import org.dussan.vaadin.dcharts.options.Legend;
 import org.dussan.vaadin.dcharts.options.Options;
 import org.dussan.vaadin.dcharts.options.SeriesDefaults;
 import org.dussan.vaadin.dcharts.renderers.series.DonutRenderer;
@@ -33,23 +37,53 @@ public class TestChart extends Widget {
             .setRendererOptions(
                 new DonutRenderer()
                     .setSliceMargin(3)
-                    .setStartAngle(-90)
-                    .setShowDataLabels(true)
-                    .setDataLabels(DataLabels.VALUE));
-
-        Legend legend = new Legend()
-            .setShow(true)
-            .setPlacement(LegendPlacements.OUTSIDE_GRID)
-            .setLocation(LegendLocations.WEST);
+                    .setStartAngle(-90));
 
         Options options = new Options()
-            .setSeriesDefaults(seriesDefaults)
-            .setLegend(legend);
+            .setCaptureRightClick(true)
+            .setSeriesDefaults(seriesDefaults);
 
-        DCharts chart = new DCharts()
-            .setDataSeries(dataSeries)
+        DCharts chart = new DCharts();
+
+        chart.setEnableChartDataMouseEnterEvent(true);
+        chart.setEnableChartDataMouseLeaveEvent(true);
+        chart.setEnableChartDataClickEvent(true);
+        chart.setEnableChartDataRightClickEvent(true);
+
+        chart.addHandler(new ChartDataMouseEnterHandler() {
+            @Override
+            public void onChartDataMouseEnter(ChartDataMouseEnterEvent event) {
+//                showNotification("CHART DATA MOUSE ENTER", event.getChartData());
+            }
+        });
+
+        chart.addHandler(new ChartDataMouseLeaveHandler() {
+            @Override
+            public void onChartDataMouseLeave(ChartDataMouseLeaveEvent event) {
+//                showNotification("CHART DATA MOUSE LEAVE", event.getChartData());
+            }
+        });
+
+        chart.addHandler(new ChartDataClickHandler() {
+            @Override
+            public void onChartDataClick(ChartDataClickEvent event) {
+//                showNotification("CHART DATA CLICK", event.getChartData());
+            }
+        });
+
+        chart.addHandler(new ChartDataRightClickHandler() {
+            @Override
+            public void onChartDataRightClick(ChartDataRightClickEvent event) {
+//                showNotification("CHART DATA RIGHT CLICK", event.getChartData());
+            }
+        });
+
+        chart.setDataSeries(dataSeries)
             .setOptions(options)
             .show();
         addComponent(chart);
+
+        chart.setHeight("300px");
+        chart.setWidth("600px");
     }
 }

@@ -1,19 +1,18 @@
 package cz.admin24.myachievo.web2.calendar.detail;
 
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
-import org.eclipse.jdt.internal.core.SetVariablesOperation;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.Validator;
 import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.server.Page;
 import com.vaadin.ui.AbstractSelect.NewItemHandler;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -23,6 +22,7 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -31,6 +31,7 @@ import cz.admin24.myachievo.connector.http.dto.Project;
 import cz.admin24.myachievo.connector.http.dto.ProjectPhase;
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
 import cz.admin24.myachievo.web2.SpringUtils;
+import cz.admin24.myachievo.web2.calendar.CalendarUrl;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.service.ProjectsCache;
 import cz.admin24.myachievo.web2.service.WorkReportCache;
@@ -148,6 +149,7 @@ public abstract class EventDetailsWindow extends Window {
         String remark = r.getRemark();
         if (remark != null) {
             remarkAutoComplete.addItem(remark);
+            remarkAutoComplete.setValue(remark);
         }
         Date date = r.getDate();
         if (date != null) {
@@ -332,6 +334,9 @@ public abstract class EventDetailsWindow extends Window {
             public void buttonClick(ClickEvent event) {
                 if (form.isValid()) {
                     commit();
+                    CalendarUrl url = new CalendarUrl(Page.getCurrent());
+                    url.setDate(dayDateField.getValue());
+                    UI.getCurrent().getNavigator().navigateTo(url.toFragment());
                     close();
                 }
             }
@@ -365,6 +370,9 @@ public abstract class EventDetailsWindow extends Window {
                         Pair<Integer, Integer> newHoursMinutes = TimesheetUtils.countRemainingTime(hoursMinutes);
                         hoursCombo.setValue(newHoursMinutes.getKey());
                         minutesCombo.setValue(newHoursMinutes.getValue());
+                        CalendarUrl url = new CalendarUrl(Page.getCurrent());
+                        url.setDate(c.getTime());
+                        UI.getCurrent().getNavigator().navigateTo(url.toFragment());
                     } else {
                         hoursCombo.setValue(hoursMinutes.getKey());
                         minutesCombo.setValue(hoursMinutes.getValue());

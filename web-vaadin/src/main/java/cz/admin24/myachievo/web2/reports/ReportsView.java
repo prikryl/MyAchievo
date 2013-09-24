@@ -9,6 +9,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import com.google.common.collect.Lists;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -25,13 +26,13 @@ public class ReportsView extends VerticalLayout implements View {
 
     public static final String                NAME                         = "reports";
     private final HorizontalLayout            toolbar                      = new HorizontalLayout();
-    private final Label                       label                        = new Label();
+    private final Label                       label                        = new Label("MyDashboard");
     private final Panel                       contentPanel                 = new Panel();
     private final GridLayout                  widgetsLayout                = new GridLayout(2, 1);
 
     private final InvoiceReport               invoiceReport                = new InvoiceReport();
-    private final ReportedHoursByProjectChart reportedHoursByProjectChart  = new ReportedHoursByProjectChart();
-    private final ReportedHoursByProjectChart reportedHoursByProjectChart2 = new ReportedHoursByProjectChart();
+    private final ReportedHoursByProjectChart thisMonthChart               = new ReportedHoursByProjectChart("This month");
+    private final ReportedHoursByProjectChart lastMonthChart               = new ReportedHoursByProjectChart("Last month");
     private final Widget                      reportedHoursByProjectChart3 = new TestChart();
     //
     private final AchievoConnectorWrapper     connector                    = SpringUtils.getBean(AchievoConnectorWrapper.class);
@@ -44,17 +45,23 @@ public class ReportsView extends VerticalLayout implements View {
         toolbar.addComponent(label);
         contentPanel.setContent(widgetsLayout);
         widgetsLayout.addComponent(invoiceReport);
-        widgetsLayout.addComponent(reportedHoursByProjectChart3);
-        widgetsLayout.addComponent(reportedHoursByProjectChart);
-        widgetsLayout.addComponent(reportedHoursByProjectChart2);
+        // widgetsLayout.addComponent(reportedHoursByProjectChart3);
+        widgetsLayout.addComponent(thisMonthChart);
+        widgetsLayout.addComponent(lastMonthChart);
 
         setExpandRatio(contentPanel, 100);
         setSizeFull();
         contentPanel.setSizeFull();
         widgetsLayout.setWidth("100%");
 
+        toolbar.setWidth("100%");
+        toolbar.setSpacing(true);
+        toolbar.addStyleName("toolbar");
+        label.addStyleName("h1");
+
         addStyleName("dashboard-view");
-        setSpacing(true);
+        widgetsLayout.setSpacing(true);
+        widgetsLayout.setMargin(new MarginInfo(false, true, true, true));
 
     }
 
@@ -81,7 +88,7 @@ public class ReportsView extends VerticalLayout implements View {
             }
         }
 
-        reportedHoursByProjectChart.refresh(lastMonthReports, lastMonthStart);
-        reportedHoursByProjectChart2.refresh(thisMonthReports, thisMonthStart);
+        thisMonthChart.refresh(lastMonthReports, lastMonthStart);
+        lastMonthChart.refresh(thisMonthReports, thisMonthStart);
     }
 }
