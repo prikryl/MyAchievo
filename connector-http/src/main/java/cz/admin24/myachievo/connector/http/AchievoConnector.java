@@ -29,11 +29,11 @@ public interface AchievoConnector {
     List<PhaseActivity> getActivities(String projectId, String phaseId) throws AuthentizationException, IOException;
 
 
-    List<WorkReport> registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws AuthentizationException,
+    void registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws AuthentizationException,
             IOException;
 
 
-    List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+    void updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
             throws AuthentizationException,
             IOException;
 

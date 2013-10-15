@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.time.DateUtils;
@@ -32,8 +35,8 @@ public class InvoiceReportBuilder {
     private final FastDateFormat periodFormat = FastDateFormat.getInstance("MMMM yyyy", UI.getCurrent().getLocale());
 
 
-    public String buildCsv(Date month, Boolean groupByProject, Boolean groupByPhase, Boolean groupByActivty, AchievoConnectorWrapper connector) {
-        boolean groupBy = groupByProject || groupByPhase || groupByActivty;
+    public String buildCsv(Date month, Boolean groupByDay, Boolean groupByProject, Boolean groupByPhase, Boolean groupByActivty, AchievoConnectorWrapper connector) {
+        boolean groupBy = groupByDay || groupByProject || groupByPhase || groupByActivty;
         Date from = DateUtils.truncate(month, Calendar.MONTH);
         Date to = DateUtils.addMilliseconds(DateUtils.addMonths(from, 1), -1);
         List<WorkReport> reportedHours = connector.getHours(from, to);
@@ -41,7 +44,7 @@ public class InvoiceReportBuilder {
         Multimap<GroupByKey, WorkReport> groupedValues = ArrayListMultimap.create();
 
         for (WorkReport r : reportedHours) {
-            GroupByKey key = new GroupByKey(r, groupByProject, groupByPhase, groupByActivty);
+            GroupByKey key = new GroupByKey(r, groupByDay, groupByProject, groupByPhase, groupByActivty);
             groupedValues.put(key, r);
         }
 
@@ -54,6 +57,9 @@ public class InvoiceReportBuilder {
 
             header.add("period");
             if (groupBy) {
+                if (groupByDay) {
+                    header.add("date");
+                }
                 if (groupByProject) {
                     header.add("project");
                 }
@@ -79,7 +85,20 @@ public class InvoiceReportBuilder {
 
             // write data
             List<String> data = Lists.newArrayList();
-            for (Entry<GroupByKey, Collection<WorkReport>> e : groupedValues.asMap().entrySet()) {
+            List<Entry<GroupByKey, Collection<WorkReport>>> groupedValueEntries = Lists.newArrayList(groupedValues.asMap().entrySet());
+            Collections.sort(groupedValueEntries, new Comparator<Entry<GroupByKey, Collection<WorkReport>>>() {
+
+                @Override
+                public int compare(Entry<GroupByKey, Collection<WorkReport>> o1, Entry<GroupByKey, Collection<WorkReport>> o2) {
+                    Date d1 = o1.getKey().getDay();
+                    Date d2 = o2.getKey().getDay();
+                    if (d1 == null || d2 == null) {
+                        return 0;
+                    }
+                    return d1.compareTo(d2);
+                }
+            });
+            for (Entry<GroupByKey, Collection<WorkReport>> e : groupedValueEntries) {
                 GroupByKey key = e.getKey();
                 Collection<WorkReport> reports = e.getValue();
 
@@ -107,6 +126,9 @@ public class InvoiceReportBuilder {
                         sumMinutes += r.getHours() * 60 + r.getMinutes();
                     }
                     data.add(periodFormat.format(month));
+                    if (groupByDay) {
+                        data.add(fullFormat.format(key.getDay()));
+                    }
                     if (groupByProject) {
                         data.add(key.getProjectName());
                     }
@@ -143,12 +165,18 @@ public class InvoiceReportBuilder {
     }
 
     private static class GroupByKey {
+        private final Date   day;
         private final String projectName;
         private final String phaseName;
         private final String activityName;
 
 
-        public GroupByKey(WorkReport r, Boolean groupByProject, Boolean groupByPhase, Boolean groupByActivty) {
+        public GroupByKey(WorkReport r, Boolean groupByDay, Boolean groupByProject, Boolean groupByPhase, Boolean groupByActivty) {
+            if (groupByDay) {
+                day = r.getDate();
+            } else {
+                day = null;
+            }
             if (groupByProject) {
                 projectName = r.getProject();
             } else {
@@ -164,6 +192,11 @@ public class InvoiceReportBuilder {
             } else {
                 activityName = null;
             }
+        }
+
+
+        public Date getDay() {
+            return day;
         }
 
 
@@ -184,7 +217,7 @@ public class InvoiceReportBuilder {
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(projectName, phaseName, activityName);
+            return Objects.hashCode(day, projectName, phaseName, activityName);
         }
 
 

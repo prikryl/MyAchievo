@@ -13,6 +13,7 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.Validator;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.Page;
+import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.AbstractSelect.NewItemHandler;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -44,14 +45,14 @@ public abstract class EventDetailsWindow extends Window {
     // private final EventDetailFieldGroup form = new EventDetailFieldGroup();
     @SuppressWarnings("deprecation")
     private final Form                    form                = new Form();
-    private final ComboBox                projectCombo        = new ComboBox("Project");
-    private final ComboBox                phaseCombo          = new ComboBox("Phase");
-    private final ComboBox                activityCombo       = new ComboBox("Activity");
+    private final ComboBox                projectCombo        = new LikeComboBox("Project");
+    private final ComboBox                phaseCombo          = new LikeComboBox("Phase");
+    private final ComboBox                activityCombo       = new LikeComboBox("Activity");
     private final IndexedContainer        remarkAutoContainer = new IndexedContainer();
-    private final ComboBox                remarkAutoComplete  = new ComboBox("Remark", remarkAutoContainer);
+    private final ComboBox                remarkAutoComplete  = new LikeComboBox("Remark", remarkAutoContainer);
     private final DateField               dayDateField        = new DateField("Date");
-    private final ComboBox                hoursCombo          = new ComboBox("Hours");
-    private final ComboBox                minutesCombo        = new ComboBox("Minutes");
+    private final ComboBox                hoursCombo          = new LikeComboBox("Hours");
+    private final ComboBox                minutesCombo        = new LikeComboBox("Minutes");
     //
     private final HorizontalLayout        buttons             = new HorizontalLayout();
     private final Button                  saveBtn             = new Button("Save");
@@ -74,10 +75,11 @@ public abstract class EventDetailsWindow extends Window {
         refreshForm(workReport);
         css();
 
+
     }
 
 
-    public List<WorkReport> commit() {
+    public void commit() {
         form.commit();
         Date day = dayDateField.getValue();
         Integer hours = (Integer) hoursCombo.getValue();
@@ -87,14 +89,12 @@ public abstract class EventDetailsWindow extends Window {
         String activityId = getSelectedId(activityCombo);
         String remark = (String) remarkAutoComplete.getValue();
         String workReportId = workReport.getId();
-        List<WorkReport> ret;
         if (workReportId == null) {
-            ret = achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
         } else {
-            ret = achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
+            achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
         }
         onEventChanged();
-        return ret;
     }
 
 
@@ -346,7 +346,9 @@ public abstract class EventDetailsWindow extends Window {
             @Override
             public void buttonClick(ClickEvent event) {
                 if (form.isValid()) {
-                    List<WorkReport> reportedHours = commit();
+                    commit();
+                    Date day = dayDateField.getValue();
+                    List<WorkReport> reportedHours = achievoConnector.getHours(day, day);
                     Pair<Integer, Integer> hoursMinutes = TimesheetUtils.countRemainingTime(reportedHours);
 
                     if (hoursMinutes.getKey() <= 0 && hoursMinutes.getValue() <= 0) {

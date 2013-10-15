@@ -6531,3 +6531,22 @@ body .dashboard.v-app .v-app-loading {
 .dashboard .v-daterange {
 	background-color: gray !important;
 }
+
+.dashboard .v-tabsheet-tabitemcell-not-enough-hours {
+	text-shadow: none;
+	width: 100%;
+}
+
+.dashboard .v-tabsheet-tabitemcell-not-enough-hours .v-caption {
+	background: rgb(204, 128, 128);
+	color: white;
+	float: right;
+}
+
+.dashboard .v-tabsheet-tabitemcell-enough-hours {
+	width: 100%;
+}
+
+.dashboard .v-tabsheet-tabitemcell-enough-hours .v-caption {
+	float: right;
+}

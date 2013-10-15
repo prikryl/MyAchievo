@@ -33,6 +33,7 @@ public class InvoiceReport extends Widget {
     private final VerticalLayout       layout               = new VerticalLayout();
     private final FormLayout           formLayout           = new FormLayout();
     private final ComboBox             periodCmb            = new ComboBox();
+    private final CheckBox             groupByDayCb         = new CheckBox("By day", true);
     private final CheckBox             groupByProjectCb     = new CheckBox("By Project", true);
     private final CheckBox             groupByPhaseCb       = new CheckBox("By Phase", false);
     private final CheckBox             groupByActivityCb    = new CheckBox("By Activity", false);
@@ -100,7 +101,7 @@ public class InvoiceReport extends Widget {
         FileDownloader fileDownloader = new FileDownloader(new FileResource(new File(""))) {
             @Override
             public boolean handleConnectorRequest(VaadinRequest request, VaadinResponse response, String path) throws IOException {
-                String invoiceCsv = invoiceReportBuilder.buildCsv((Date) periodCmb.getValue(), groupByProjectCb.getValue(), groupByPhaseCb.getValue(), groupByActivityCb.getValue(),
+                String invoiceCsv = invoiceReportBuilder.buildCsv((Date) periodCmb.getValue(),groupByDayCb.getValue(), groupByProjectCb.getValue(), groupByPhaseCb.getValue(), groupByActivityCb.getValue(),
                         SpringUtils.getBean(AchievoConnectorWrapper.class));
 
                 setFileDownloadResource(new CsvDownloadResource(invoiceCsv, "invoice " + periodFormat.format((Date) periodCmb.getValue()) + ".csv"));
@@ -118,6 +119,7 @@ public class InvoiceReport extends Widget {
         layout.addComponent(formLayout);
         layout.addComponent(exportBtn);
         formLayout.addComponent(periodCmb);
+        formLayout.addComponent(groupByDayCb);
         formLayout.addComponent(groupByProjectCb);
         formLayout.addComponent(groupByPhaseCb);
         formLayout.addComponent(groupByActivityCb);

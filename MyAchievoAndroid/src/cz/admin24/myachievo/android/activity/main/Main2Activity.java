@@ -41,6 +41,14 @@ public class Main2Activity extends BaseActivity {
                 startActivityForResult(registerWorkIntent, RESULT_REGISTRED_WORK);
             }
         });
+
+        reportView.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                parent.getit
+            }
+        });
     }
 
     public class ItemClickListener implements OnItemClickListener {

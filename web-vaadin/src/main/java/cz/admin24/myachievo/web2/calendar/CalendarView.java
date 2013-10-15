@@ -1,19 +1,19 @@
 package cz.admin24.myachievo.web2.calendar;
 
+import java.text.MessageFormat;
 import java.util.Date;
-import java.util.TimeZone;
+import java.util.List;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.apache.commons.lang3.tuple.Pair;
 import org.joda.time.DateTime;
 import org.joda.time.Minutes;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
-import com.vaadin.server.WebBrowser;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -24,6 +24,7 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
 import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
+import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.BackwardEvent;
@@ -42,6 +43,7 @@ import com.vaadin.ui.components.calendar.CalendarComponentEvents.RangeSelectEven
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.RangeSelectHandler;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.WeekClick;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.WeekClickHandler;
+import com.vaadin.ui.components.calendar.event.CalendarEvent;
 
 import cz.admin24.myachievo.connector.http.dto.PhaseActivity;
 import cz.admin24.myachievo.connector.http.dto.Project;
@@ -52,6 +54,9 @@ import cz.admin24.myachievo.web2.calendar.CalendarUrl.CalendarViewType;
 import cz.admin24.myachievo.web2.calendar.detail.EventDetailsWindow;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.service.ProjectsCache;
+import cz.admin24.myachievo.web2.utils.RemainingTime;
+import cz.admin24.myachievo.web2.utils.TimesheetConstants;
+import cz.admin24.myachievo.web2.utils.TimesheetUtils;
 
 //@Component
 //@Scope("prototype")
@@ -66,8 +71,14 @@ public class CalendarView extends VerticalLayout implements View {
     private final CssLayout         weeklyTab        = new TypeTab("Weekly");
     private final CssLayout         monthlyTab       = new TypeTab("Monthly");
     private final CssLayout         todayTab         = new TypeTab("Today");
-    private final TabSheet          tabSheet         = new TabSheet(todayTab, dailyTab, weeklyTab, monthlyTab);
-    private final Calendar          calendar         = new Calendar();
+    private final CssLayout         statisticsTab    = new TypeTab("5/40h");
+    private final TabSheet          tabSheet         = new TabSheet(todayTab, dailyTab, weeklyTab, monthlyTab, statisticsTab);
+    private final Calendar          calendar         = new Calendar() {
+                                                         public java.util.List<com.vaadin.ui.components.calendar.event.CalendarEvent> getEvents(Date startDate, Date endDate) {
+                                                             List<CalendarEvent> ret = super.getEvents(startDate, endDate);
+                                                             return ret;
+                                                         };
+                                                     };
     private final HorizontalLayout  buttonsLayout    = new HorizontalLayout();
     private final NativeButton      nextBtn          = new NativeButton();
     private final NativeButton      prevBtn          = new NativeButton();
@@ -323,12 +334,12 @@ public class CalendarView extends VerticalLayout implements View {
 
 
     private void localize() {
-//        WebBrowser browser = Page.getCurrent().getWebBrowser();
-//        int rawTimezoneOffset = browser.getTimezoneOffset();
-//        String[] possibleTimeZones = TimeZone.getAvailableIDs(rawTimezoneOffset);
-//        if (!ArrayUtils.isEmpty(possibleTimeZones)) {
-//            calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
-//        }
+        // WebBrowser browser = Page.getCurrent().getWebBrowser();
+        // int rawTimezoneOffset = browser.getTimezoneOffset();
+        // String[] possibleTimeZones = TimeZone.getAvailableIDs(rawTimezoneOffset);
+        // if (!ArrayUtils.isEmpty(possibleTimeZones)) {
+        // calendar.setTimeZone(TimeZone.getTimeZone(possibleTimeZones[0]));
+        // }
 
     }
 
@@ -381,7 +392,14 @@ public class CalendarView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-        calendar.setEventProvider(new AchievoEventProvider(achievoConnector));
+        calendar.setEventProvider(new AchievoEventProvider(achievoConnector) {
+            @Override
+            public List<CalendarEvent> getEvents(Date startDate, Date endDate) {
+                List<CalendarEvent> events = super.getEvents(startDate, endDate);
+                onEventsLoaded((List) events, startDate, endDate);
+                return events;
+            }
+        });
         String parameters = event.getParameters();
         CalendarUrl url = new CalendarUrl(parameters);
         if (StringUtils.isBlank(parameters)) {
@@ -413,6 +431,48 @@ public class CalendarView extends VerticalLayout implements View {
         tabSheet.getTab(weeklyTab).setCaption("Weekly (" + weekFormat.format(date) + ")");
         tabSheet.getTab(monthlyTab).setCaption("Monthly (" + monthFormat.format(date) + ")");
         refresh();
+    }
+
+
+    private void onEventsLoaded(List<WorkReportEvent> events, Date startDate, Date endDate) {
+        Integer expectedMinutes;
+        switch (getUrl().getType()) {
+        case DAY:
+            // expectedMinutes = TimesheetConstants.CONTRACT_MINUTES;
+            // break;
+        case WEEK:
+            // expectedMinutes = TimesheetConstants.CONTRACT_MINUTES * 5;
+            // break;
+        case MONTH:
+        default:
+            java.util.Calendar today = java.util.Calendar.getInstance();
+            expectedMinutes = 0;
+            java.util.Calendar c = java.util.Calendar.getInstance();
+            c.setTime(startDate);
+            do {
+                // don't register time in future
+                if (c.after(today)) {
+                    break;
+                }
+                int dayOfWeek = c.get(java.util.Calendar.DAY_OF_WEEK);
+                if (dayOfWeek != java.util.Calendar.SATURDAY && dayOfWeek != java.util.Calendar.SUNDAY) {
+                    expectedMinutes += TimesheetConstants.CONTRACT_MINUTES;
+                }
+                c.add(java.util.Calendar.DAY_OF_YEAR, 1);
+            } while (c.getTime().before(endDate));
+            break;
+        }
+
+        RemainingTime remainingTime = TimesheetUtils.countRemainingTime(events, expectedMinutes);
+
+        Tab tab = tabSheet.getTab(statisticsTab);
+        tab.setCaption(MessageFormat.format("{0}h {1}min left", remainingTime.getHours(), remainingTime.getMinutes()));
+
+        if (remainingTime.isPositive()) {
+            tab.setStyleName("not-enough-hours");
+        } else {
+            tab.setStyleName("enough-hours");
+        }
     }
 
 
