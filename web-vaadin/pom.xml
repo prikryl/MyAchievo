@@ -4,7 +4,7 @@
     <groupId>cz.admin24.myachievo</groupId>
     <artifactId>web-vaadin</artifactId>
     <packaging>war</packaging>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>Vaadin Web Application</name>
 
     <properties>

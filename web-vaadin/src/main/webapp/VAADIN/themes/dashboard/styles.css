@@ -7,7 +7,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.5";
+	content: "7.1.7";
 }
 
 .v-generated-body {
@@ -333,7 +333,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.5";
+	content: "7.1.7";
 }
 
 .v-generated-body {
@@ -1954,8 +1954,12 @@ body .dashboard.v-app .v-app-loading {
 	line-height: normal;
 }
 
-.v-ios6.v-webkit .dashboard .v-scrollable {
+.v-ios.v-webkit .dashboard .v-scrollable {
 	-webkit-overflow-scrolling: touch;
+}
+
+.v-ios5.v-webkit .dashboard .v-scrollable {
+	-webkit-overflow-scrolling: none;
 }
 
 .dashboard.v-overlay-container {

@@ -7,10 +7,10 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.commons.lang3.tuple.Pair;
 import org.joda.time.DateTime;
 import org.joda.time.Minutes;
 
+import com.google.common.collect.ImmutableList;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
@@ -62,34 +62,37 @@ import cz.admin24.myachievo.web2.utils.TimesheetUtils;
 //@Scope("prototype")
 //@VaadinView(CalendarView.NAME)
 public class CalendarView extends VerticalLayout implements View {
-    private static final long       serialVersionUID = 1L;
-    public static final String      NAME             = "";
-    private final FastDateFormat    dayFormat        = FastDateFormat.getDateInstance(FastDateFormat.SHORT, UI.getCurrent().getLocale());
-    private final FastDateFormat    weekFormat       = FastDateFormat.getInstance("w", UI.getCurrent().getLocale());
-    private final FastDateFormat    monthFormat      = FastDateFormat.getInstance("MMMM", UI.getCurrent().getLocale());
-    private final CssLayout         dailyTab         = new TypeTab("Daily");
-    private final CssLayout         weeklyTab        = new TypeTab("Weekly");
-    private final CssLayout         monthlyTab       = new TypeTab("Monthly");
-    private final CssLayout         todayTab         = new TypeTab("Today");
-    private final CssLayout         statisticsTab    = new TypeTab("5/40h");
-    private final TabSheet          tabSheet         = new TabSheet(todayTab, dailyTab, weeklyTab, monthlyTab, statisticsTab);
-    private final Calendar          calendar         = new Calendar() {
-                                                         public java.util.List<com.vaadin.ui.components.calendar.event.CalendarEvent> getEvents(Date startDate, Date endDate) {
-                                                             List<CalendarEvent> ret = super.getEvents(startDate, endDate);
-                                                             return ret;
-                                                         };
-                                                     };
-    private final HorizontalLayout  buttonsLayout    = new HorizontalLayout();
-    private final NativeButton      nextBtn          = new NativeButton();
-    private final NativeButton      prevBtn          = new NativeButton();
+    private static final ImmutableList<String> HOLIDAY_REGION   = ImmutableList.of("cz");
+    private static final long                  serialVersionUID = 1L;
+    public static final String                 NAME             = "";
+    private final FastDateFormat               dayFormat        = FastDateFormat.getDateInstance(FastDateFormat.SHORT, UI.getCurrent().getLocale());
+    private final FastDateFormat               weekFormat       = FastDateFormat.getInstance("w", UI.getCurrent().getLocale());
+    private final FastDateFormat               monthFormat      = FastDateFormat.getInstance("MMMM", UI.getCurrent().getLocale());
+    private final CssLayout                    dailyTab         = new TypeTab("Daily");
+    private final CssLayout                    weeklyTab        = new TypeTab("Weekly");
+    private final CssLayout                    monthlyTab       = new TypeTab("Monthly");
+    private final CssLayout                    todayTab         = new TypeTab("Today");
+    private final CssLayout                    statisticsTab    = new TypeTab("5/40h");
+    private final TabSheet                     tabSheet         = new TabSheet(todayTab, dailyTab, weeklyTab, monthlyTab, statisticsTab);
+    private final Calendar                     calendar         = new Calendar() {
+                                                                    public java.util.List<com.vaadin.ui.components.calendar.event.CalendarEvent> getEvents(Date startDate, Date endDate) {
+                                                                        List<CalendarEvent> ret = super.getEvents(startDate, endDate);
+                                                                        return ret;
+                                                                    };
+                                                                };
+    private final HorizontalLayout             buttonsLayout    = new HorizontalLayout();
+    private final NativeButton                 nextBtn          = new NativeButton();
+    private final NativeButton                 prevBtn          = new NativeButton();
     // private final Button todayBtn = new Button("Today");
     // private final Button dailyBtn = new Button("Daily");
     // private final Button weeklyBtn = new Button("Weekly");
     // private final Button monthlyBtn = new Button("Monthly");
 
-    private AchievoConnectorWrapper achievoConnector = SpringUtils.getBean(AchievoConnectorWrapper.class);
-    private ProjectsCache           projectsCache    = SpringUtils.getBean(ProjectsCache.class);
+    private AchievoConnectorWrapper            achievoConnector = SpringUtils.getBean(AchievoConnectorWrapper.class);
+    private ProjectsCache                      projectsCache    = SpringUtils.getBean(ProjectsCache.class);
 
+
+    // private Holidays holidays = SpringUtils.getBean(Holidays.class);
 
     // @Autowired
     // private Navigator navigator;
@@ -436,34 +439,51 @@ public class CalendarView extends VerticalLayout implements View {
 
     private void onEventsLoaded(List<WorkReportEvent> events, Date startDate, Date endDate) {
         Integer expectedMinutes;
-        switch (getUrl().getType()) {
-        case DAY:
-            // expectedMinutes = TimesheetConstants.CONTRACT_MINUTES;
-            // break;
-        case WEEK:
-            // expectedMinutes = TimesheetConstants.CONTRACT_MINUTES * 5;
-            // break;
+        CalendarUrl url = getUrl();
+        switch (url.getType()) {
         case MONTH:
+            // trim on single month
+            Date date = url.getDate();
+            startDate = DateUtils.truncate(date, java.util.Calendar.MONTH);
+            endDate = DateUtils.addMilliseconds(DateUtils.addMonths(startDate, 1), -1);
+            break;
+        case DAY:
+        case WEEK:
         default:
-            java.util.Calendar today = java.util.Calendar.getInstance();
-            expectedMinutes = 0;
-            java.util.Calendar c = java.util.Calendar.getInstance();
-            c.setTime(startDate);
-            do {
-                // don't register time in future
-                if (c.after(today)) {
-                    break;
-                }
-                int dayOfWeek = c.get(java.util.Calendar.DAY_OF_WEEK);
-                if (dayOfWeek != java.util.Calendar.SATURDAY && dayOfWeek != java.util.Calendar.SUNDAY) {
-                    expectedMinutes += TimesheetConstants.CONTRACT_MINUTES;
-                }
-                c.add(java.util.Calendar.DAY_OF_YEAR, 1);
-            } while (c.getTime().before(endDate));
+            // NOP
             break;
         }
+        java.util.Calendar today = java.util.Calendar.getInstance();
+        expectedMinutes = 0;
+        java.util.Calendar c = java.util.Calendar.getInstance();
+        c.setTime(startDate);
 
-        RemainingTime remainingTime = TimesheetUtils.countRemainingTime(events, expectedMinutes);
+        // Holidays holidays = new Holidays();
+
+        do {
+            // don't register time in future
+            if (c.after(today)) {
+                break;
+            }
+            // skip holidays
+            // try {
+            // if (!holidays.on(c.getTime(), HOLIDAY_REGION, Holidays.NO_OPTION).isEmpty()) {
+            // break;
+            // }
+            // } catch (HolidayException e) {
+            // throw new IllegalStateException(e);
+            // } catch (UnknownRegionException e) {
+            // throw new IllegalStateException(e);
+            // }
+
+            int dayOfWeek = c.get(java.util.Calendar.DAY_OF_WEEK);
+            if (dayOfWeek != java.util.Calendar.SATURDAY && dayOfWeek != java.util.Calendar.SUNDAY) {
+                expectedMinutes += TimesheetConstants.CONTRACT_MINUTES;
+            }
+            c.add(java.util.Calendar.DAY_OF_YEAR, 1);
+        } while (c.getTime().before(endDate));
+
+        RemainingTime remainingTime = TimesheetUtils.countRemainingTime(events, expectedMinutes, startDate, endDate);
 
         Tab tab = tabSheet.getTab(statisticsTab);
         tab.setCaption(MessageFormat.format("{0}h {1}min left", remainingTime.getHours(), remainingTime.getMinutes()));

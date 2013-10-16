@@ -1,5 +1,6 @@
 package cz.admin24.myachievo.web2.utils;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,9 +23,13 @@ public class TimesheetUtils {
     }
 
 
-    public static RemainingTime countRemainingTime(List<WorkReportEvent> events, Integer expectedMinutes) {
+    public static RemainingTime countRemainingTime(List<WorkReportEvent> events, Integer expectedMinutes, Date startDate, Date endDate) {
         List<WorkReport> reportedHours = Lists.newArrayListWithCapacity(events.size());
         for (WorkReportEvent e : events) {
+            if (e.getStart().before(startDate) || e.getStart().after(endDate)) {
+                // skip event out of range...
+                continue;
+            }
             reportedHours.add(e.getWorkReport());
         }
 
