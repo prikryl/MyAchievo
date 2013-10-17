@@ -123,7 +123,7 @@ public class SideBar extends VerticalLayout {
             }
         });
         // event.getButton().addStyleName("selected");
-        menu.addComponent(b);
+//        menu.addComponent(b);
 
         b = new NativeButton("Calendar");
         b.addStyleName("icon-schedule");

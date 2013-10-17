@@ -69,12 +69,14 @@ public class SubmitClickListener implements OnClickListener {
         new RegisterWorkTask(projectId, phaseId, activityId, day, hours, minutes, remark, context) {
 
             @Override
-            protected void onPostExecute(BaseActivity context, List<WorkReport> result) {
-                if (result.isEmpty()) {
-                    Toast.makeText(context, context.getText(R.string.edit_work_remark_registered_no_work_error), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Toast.makeText(context, context.getResources().getString(R.string.edit_work_registred, result.get(result.size() - 1).getRemark()), Toast.LENGTH_SHORT).show();
+            protected void onPostExecute(BaseActivity context, Void result) {
+                // if (result.isEmpty()) {
+                // Toast.makeText(context,
+                // context.getText(R.string.edit_work_remark_registered_no_work_error),
+                // Toast.LENGTH_LONG).show();
+                // return;
+                // }
+                Toast.makeText(context, context.getResources().getString(R.string.edit_work_registred, ""), Toast.LENGTH_SHORT).show();
                 context.setResult(Main2Activity.RESULT_REGISTRED_WORK, new Main2Intent(context));
                 context.finish();
             }

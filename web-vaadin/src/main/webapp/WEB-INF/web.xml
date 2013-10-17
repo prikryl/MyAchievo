@@ -27,6 +27,11 @@
             <param-name>systemMessagesBeanName</param-name>
             <param-value>DEFAULT</param-value>
         </init-param>
+
+        <init-param>
+            <param-name>widgetset</param-name>
+            <param-value>cz.admin24.myachievo.web2.AppWidgetSet</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>vaadin-servlet</servlet-name>

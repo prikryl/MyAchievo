@@ -10,4 +10,5 @@
         <aop:scoped-proxy />
     </bean>
 
+<!--     <bean class="ch.gadp.holidays.Holidays" scope="application" /> -->
 </beans>

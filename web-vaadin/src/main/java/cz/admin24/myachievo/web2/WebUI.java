@@ -40,7 +40,7 @@ public class WebUI extends UI implements ErrorHandler {
         navigator = new Navigator(this, baseLayout.getContent());
         navigator.addView(CalendarView.NAME, new CalendarView());
         navigator.addView(DashboardView.NAME, new DashboardView());
-        navigator.addView(ReportsView.NAME, new ReportsView());
+        navigator.addView(ReportsView.NAME, ReportsView.class);
         navigator.addView(AndroidView.NAME, new AndroidView());
         // DiscoveryNavigator navigator = new DiscoveryNavigator(this, baseLayout.getContent());
         VaadinSession.getCurrent().setErrorHandler(this);

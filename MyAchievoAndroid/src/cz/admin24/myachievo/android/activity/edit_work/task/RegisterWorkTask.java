@@ -13,7 +13,7 @@ import cz.admin24.myachievo.connector.http.AchievoConnector;
 import cz.admin24.myachievo.connector.http.AuthentizationException;
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
 
-public abstract class RegisterWorkTask extends SlowlyAhievoTask<Void, Void, List<WorkReport>> {
+public abstract class RegisterWorkTask extends SlowlyAhievoTask<Void, Void, Void> {
     private static final Logger LOG = LoggerFactory.getLogger(RegisterWorkTask.class);
     //
     private final String        projectId;
@@ -38,10 +38,10 @@ public abstract class RegisterWorkTask extends SlowlyAhievoTask<Void, Void, List
 
 
     @Override
-    protected List<WorkReport> doInBackground(AchievoConnector achievoConnector, MyAchievoDbHelper dbHelper, Void... params) throws AuthentizationException, IOException {
-        List<WorkReport> registerHours = achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
-        LOG.info("Registered work in day '{}': {}", day, registerHours);
-        return registerHours;
+    protected Void doInBackground(AchievoConnector achievoConnector, MyAchievoDbHelper dbHelper, Void... params) throws AuthentizationException, IOException {
+        achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+        // LOG.info("Registered work in day '{}': {}", day, registerHours);
+        return null;
     }
 
 }

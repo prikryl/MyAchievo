@@ -1,19 +1,19 @@
 package cz.admin24.myachievo.web2.calendar.detail;
 
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
-import org.eclipse.jdt.internal.core.SetVariablesOperation;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.Validator;
 import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.server.Page;
+import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.AbstractSelect.NewItemHandler;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -23,6 +23,7 @@ import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Form;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -31,6 +32,7 @@ import cz.admin24.myachievo.connector.http.dto.Project;
 import cz.admin24.myachievo.connector.http.dto.ProjectPhase;
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
 import cz.admin24.myachievo.web2.SpringUtils;
+import cz.admin24.myachievo.web2.calendar.CalendarUrl;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.service.ProjectsCache;
 import cz.admin24.myachievo.web2.service.WorkReportCache;
@@ -43,14 +45,14 @@ public abstract class EventDetailsWindow extends Window {
     // private final EventDetailFieldGroup form = new EventDetailFieldGroup();
     @SuppressWarnings("deprecation")
     private final Form                    form                = new Form();
-    private final ComboBox                projectCombo        = new ComboBox("Project");
-    private final ComboBox                phaseCombo          = new ComboBox("Phase");
-    private final ComboBox                activityCombo       = new ComboBox("Activity");
+    private final ComboBox                projectCombo        = new LikeComboBox("Project");
+    private final ComboBox                phaseCombo          = new LikeComboBox("Phase");
+    private final ComboBox                activityCombo       = new LikeComboBox("Activity");
     private final IndexedContainer        remarkAutoContainer = new IndexedContainer();
-    private final ComboBox                remarkAutoComplete  = new ComboBox("Remark", remarkAutoContainer);
+    private final ComboBox                remarkAutoComplete  = new LikeComboBox("Remark", remarkAutoContainer);
     private final DateField               dayDateField        = new DateField("Date");
-    private final ComboBox                hoursCombo          = new ComboBox("Hours");
-    private final ComboBox                minutesCombo        = new ComboBox("Minutes");
+    private final ComboBox                hoursCombo          = new LikeComboBox("Hours");
+    private final ComboBox                minutesCombo        = new LikeComboBox("Minutes");
     //
     private final HorizontalLayout        buttons             = new HorizontalLayout();
     private final Button                  saveBtn             = new Button("Save");
@@ -73,10 +75,11 @@ public abstract class EventDetailsWindow extends Window {
         refreshForm(workReport);
         css();
 
+
     }
 
 
-    public List<WorkReport> commit() {
+    public void commit() {
         form.commit();
         Date day = dayDateField.getValue();
         Integer hours = (Integer) hoursCombo.getValue();
@@ -86,14 +89,12 @@ public abstract class EventDetailsWindow extends Window {
         String activityId = getSelectedId(activityCombo);
         String remark = (String) remarkAutoComplete.getValue();
         String workReportId = workReport.getId();
-        List<WorkReport> ret;
         if (workReportId == null) {
-            ret = achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            achievoConnector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
         } else {
-            ret = achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
+            achievoConnector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
         }
         onEventChanged();
-        return ret;
     }
 
 
@@ -148,6 +149,7 @@ public abstract class EventDetailsWindow extends Window {
         String remark = r.getRemark();
         if (remark != null) {
             remarkAutoComplete.addItem(remark);
+            remarkAutoComplete.setValue(remark);
         }
         Date date = r.getDate();
         if (date != null) {
@@ -332,6 +334,9 @@ public abstract class EventDetailsWindow extends Window {
             public void buttonClick(ClickEvent event) {
                 if (form.isValid()) {
                     commit();
+                    CalendarUrl url = new CalendarUrl(Page.getCurrent());
+                    url.setDate(dayDateField.getValue());
+                    UI.getCurrent().getNavigator().navigateTo(url.toFragment());
                     close();
                 }
             }
@@ -341,7 +346,9 @@ public abstract class EventDetailsWindow extends Window {
             @Override
             public void buttonClick(ClickEvent event) {
                 if (form.isValid()) {
-                    List<WorkReport> reportedHours = commit();
+                    commit();
+                    Date day = dayDateField.getValue();
+                    List<WorkReport> reportedHours = achievoConnector.getHours(day, day);
                     Pair<Integer, Integer> hoursMinutes = TimesheetUtils.countRemainingTime(reportedHours);
 
                     if (hoursMinutes.getKey() <= 0 && hoursMinutes.getValue() <= 0) {
@@ -365,6 +372,9 @@ public abstract class EventDetailsWindow extends Window {
                         Pair<Integer, Integer> newHoursMinutes = TimesheetUtils.countRemainingTime(hoursMinutes);
                         hoursCombo.setValue(newHoursMinutes.getKey());
                         minutesCombo.setValue(newHoursMinutes.getValue());
+                        CalendarUrl url = new CalendarUrl(Page.getCurrent());
+                        url.setDate(c.getTime());
+                        UI.getCurrent().getNavigator().navigateTo(url.toFragment());
                     } else {
                         hoursCombo.setValue(hoursMinutes.getKey());
                         minutesCombo.setValue(hoursMinutes.getValue());

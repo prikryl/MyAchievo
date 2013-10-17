@@ -4,12 +4,12 @@
     <groupId>cz.admin24.myachievo</groupId>
     <artifactId>web-vaadin</artifactId>
     <packaging>war</packaging>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>Vaadin Web Application</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vaadin.version>7.1.5</vaadin.version>
+        <vaadin.version>7.1.7</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <org.springframework-version>3.2.4.RELEASE</org.springframework-version>
         <org.springframework.security-version>3.1.4.RELEASE</org.springframework.security-version>
@@ -24,6 +24,17 @@
             <artifactId>connector-http</artifactId>
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>ch.gadp</groupId>
+            <artifactId>holidays</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>dcharts-widget</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-server</artifactId>
@@ -136,7 +147,14 @@
         </dependency>
 
 
-                    <!-- Commons -->
+        <!-- Commons -->
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

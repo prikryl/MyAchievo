@@ -93,9 +93,9 @@ public class AchievoProxyTest extends TestCase {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_YEAR, -18);
 
-        List<WorkReport> registerHours = proxy.registerHours(c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
+        proxy.registerHours(c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
 
-        LOG.info("Registred hours:\n{}", registerHours);
+        LOG.info("Registred hours.");
     }
 
 
@@ -106,9 +106,9 @@ public class AchievoProxyTest extends TestCase {
         Calendar c = Calendar.getInstance();
         // c.add(Calendar.DAY_OF_YEAR, -18);
 
-        List<WorkReport> registerHours = proxy.updateRegiteredHours("745006_PICK_NEW ONE", c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
+        proxy.updateRegiteredHours("745006_PICK_NEW ONE", c.getTime(), 8, 0, "2145", "10670", "2", "vyvoj 3.4 pro cs");
 
-        LOG.info("Registred hours:\n{}", registerHours);
+        LOG.info("Updated hours.");
     }
 
 }

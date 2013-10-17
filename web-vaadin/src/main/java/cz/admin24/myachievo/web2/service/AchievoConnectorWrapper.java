@@ -2,6 +2,7 @@ package cz.admin24.myachievo.web2.service;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -95,46 +96,45 @@ public class AchievoConnectorWrapper {
     }
 
 
-    public List<WorkReport> registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IllegalStateException,
+    public void registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IllegalStateException,
             AccessDeniedException {
         try {
-            List<WorkReport> ret = connector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
-            workReportCache.put(ret);
-            return ret;
+            connector.registerHours(day, hours, minutes, projectId, phaseId, activityId, remark);
+            return;
         } catch (AuthentizationException e) {
             handleException(e);
         } catch (IOException e) {
             handleException(e);
         }
-        return null;
     }
 
 
-    public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+    public void updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
             throws IllegalStateException,
             AccessDeniedException {
         try {
-            List<WorkReport> ret = connector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
-            workReportCache.put(ret);
-            return ret;
+            connector.updateRegiteredHours(workReportId, day, hours, minutes, projectId, phaseId, activityId, remark);
+            return;
         } catch (AuthentizationException e) {
             handleException(e);
         } catch (IOException e) {
             handleException(e);
         }
-        return null;
     }
 
 
     public List<WorkReport> getHours(Date from, Date to) throws IllegalStateException, AccessDeniedException {
         try {
-            return connector.getHours(from, to);
+
+            List<WorkReport> hours = connector.getHours(from, to);
+            workReportCache.put(hours);
+            return hours;
         } catch (AuthentizationException e) {
             handleException(e);
         } catch (IOException e) {
             handleException(e);
         }
-        return null;
+        return Collections.EMPTY_LIST;
     }
 
 

@@ -31,7 +31,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#setCredentials(java.lang.String,
      * java.lang.String)
      */
@@ -42,7 +42,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#authentize(java.lang.String,
      * java.lang.String)
      */
@@ -54,7 +54,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#getFullUserName()
      */
     public String getFullUserName() {
@@ -64,7 +64,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#getProjects()
      */
     public List<Project> getProjects() throws IOException {
@@ -74,7 +74,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#getPhases(java.lang.String)
      */
     public List<ProjectPhase> getPhases(String projectId) throws IOException {
@@ -84,7 +84,7 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#getActivities(java.lang.String,
      * java.lang.String)
      */
@@ -95,21 +95,20 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#registerHours(java.util.Date,
      * java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String,
      * java.lang.String)
      */
-    public List<WorkReport> registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IOException {
+    public void registerHours(Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark) throws IOException {
         PersistentConnection connection = getConnection();
         new CmdRegisterHours(connection.getUserId(), day, hours, minutes, projectId, phaseId, activityId, remark).execute(connection);
-        return getHours(day, day);
     }
 
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see cz.admin24.myachievo.connector.http.AchievoConnectorI#getHours(java.util.Date,
      * java.util.Date)
      */
@@ -120,23 +119,22 @@ public class AchievoConnectorImpl implements AchievoConnector {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see
      * cz.admin24.myachievo.connector.http.AchievoConnector#updateRegiteredHours(java.lang.String,
      * java.util.Date, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String,
      * java.lang.String, java.lang.String)
      */
-    public List<WorkReport> updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
+    public void updateRegiteredHours(String workReportId, Date day, Integer hours, Integer minutes, String projectId, String phaseId, String activityId, String remark)
             throws AuthentizationException, IOException {
         PersistentConnection connection = getConnection();
         new CmdRegisterHours(workReportId, connection.getUserId(), day, hours, minutes, projectId, phaseId, activityId, remark).execute(connection);
-        return getHours(day, day);
     }
 
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see
      * cz.admin24.myachievo.connector.http.AchievoConnector#deleteRegisteredHours(java.lang.String)
      */
