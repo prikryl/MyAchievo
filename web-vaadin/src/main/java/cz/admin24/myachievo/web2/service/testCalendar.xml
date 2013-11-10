@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:gCal='http://schemas.google.com/gCal/2005'>
+    <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic</id>
+    <updated>2013-11-10T01:52:09.000Z</updated>
+    <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+    <title type='text'>České svátky</title>
+    <subtitle type='text'>České svátky</subtitle>
+    <link rel='alternate' type='text/html' href='https://www.google.com/calendar/embed?src=cs.czech%23holiday%40group.v.calendar.google.com' />
+    <link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml'
+        href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic' />
+    <link rel='http://schemas.google.com/g/2005#batch' type='application/atom+xml'
+        href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/batch' />
+    <link rel='self' type='application/atom+xml' href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic?max-results=25' />
+    <link rel='next' type='application/atom+xml'
+        href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic?start-index=26&amp;max-results=25' />
+    <author>
+        <name>České svátky</name>
+    </author>
+    <generator version='1.0' uri='http://www.google.com/calendar'>Google Calendar</generator>
+    <openSearch:totalResults>37</openSearch:totalResults>
+    <openSearch:startIndex>1</openSearch:startIndex>
+    <openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+    <gCal:timezone value='UTC' />
+    <gCal:timesCleaned value='0' />
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40ca2944d654917daa022b86cb554cb2e99e5cef84</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Štedrý den</title>
+        <summary type='html'>Kdy: Po 24. pro 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Po 24. pro 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBjYTI5NDRkNjU0OTE3ZGFhMDIyYjg2Y2I1NTRjYjJlOTllNWNlZjg0IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40ca2944d654917daa022b86cb554cb2e99e5cef84' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%409bae7e86083abdfdff45712c19ef81bc41f44111</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Štedrý den</title>
+        <summary type='html'>Kdy: &amp;Uacute;t 24. pro 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Út 24. pro 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA5YmFlN2U4NjA4M2FiZGZkZmY0NTcxMmMxOWVmODFiYzQxZjQ0MTExIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%409bae7e86083abdfdff45712c19ef81bc41f44111' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4026c4829203feb7deebebdf226285322a079b9b7c</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Štedrý den</title>
+        <summary type='html'>Kdy: St 24. pro 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: St 24. pro 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAyNmM0ODI5MjAzZmViN2RlZWJlYmRmMjI2Mjg1MzIyYTA3OWI5YjdjIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4026c4829203feb7deebebdf226285322a079b9b7c' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%409595a34a188b5376d452c829499a8f8354ec6049</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Velikonoční pondělí</title>
+        <summary type='html'>Kdy: Po 21. dub 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Po 21. dub 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA5NTk1YTM0YTE4OGI1Mzc2ZDQ1MmM4Mjk0OTlhOGY4MzU0ZWM2MDQ5IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%409595a34a188b5376d452c829499a8f8354ec6049' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4063ace87f9b0b2ef44d306e9a0b4231d95c5bb0a6</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Svátek práce</title>
+        <summary type='html'>Kdy: &amp;Uacute;t 1. kv&amp;#283; 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Út 1. kvě 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA2M2FjZTg3ZjliMGIyZWY0NGQzMDZlOWEwYjQyMzFkOTVjNWJiMGE2IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4063ace87f9b0b2ef44d306e9a0b4231d95c5bb0a6' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4059ea753d474913d8c7ab474eaba701f8ec5c2ba1</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Svátek práce</title>
+        <summary type='html'>Kdy: &amp;#268;t 1. kv&amp;#283; 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Čt 1. kvě 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA1OWVhNzUzZDQ3NDkxM2Q4YzdhYjQ3NGVhYmE3MDFmOGVjNWMyYmExIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4059ea753d474913d8c7ab474eaba701f8ec5c2ba1' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4019480e43102b11f061a7fc231692a6504e6f55de</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Svátek práce</title>
+        <summary type='html'>Kdy: St 1. kv&amp;#283; 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: St 1. kvě 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAxOTQ4MGU0MzEwMmIxMWYwNjFhN2ZjMjMxNjkyYTY1MDRlNmY1NWRlIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4019480e43102b11f061a7fc231692a6504e6f55de' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40cdcc3450b77b919b7e5c1d0186439b81fe315723</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Nový rok</title>
+        <summary type='html'>Kdy: St 1. led 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: St 1. led 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBjZGNjMzQ1MGI3N2I5MTliN2U1YzFkMDE4NjQzOWI4MWZlMzE1NzIzIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40cdcc3450b77b919b7e5c1d0186439b81fe315723' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4093d93af5add7e8e8542f9d2be9bf9b189adc7088</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Nový rok</title>
+        <summary type='html'>Kdy: &amp;Uacute;t 1. led 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Út 1. led 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA5M2Q5M2FmNWFkZDdlOGU4NTQyZjlkMmJlOWJmOWIxODlhZGM3MDg4IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4093d93af5add7e8e8542f9d2be9bf9b189adc7088' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%408d6e08767033dad05cc7f3ac1a58664ea9f2350f</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Nový rok</title>
+        <summary type='html'>Kdy: Ne 1. led 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Ne 1. led 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA4ZDZlMDg3NjcwMzNkYWQwNWNjN2YzYWMxYTU4NjY0ZWE5ZjIzNTBmIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%408d6e08767033dad05cc7f3ac1a58664ea9f2350f' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40c9aa210802eb75e00c7dce4c1c49b6671c4ec85a</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den české státnosti</title>
+        <summary type='html'>Kdy: P&amp;aacute; 28. z&amp;aacute;&amp;#345; 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Pá 28. zář 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBjOWFhMjEwODAyZWI3NWUwMGM3ZGNlNGMxYzQ5YjY2NzFjNGVjODVhIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40c9aa210802eb75e00c7dce4c1c49b6671c4ec85a' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40910a92f331886c719cdab7cae0f8d56387788789</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den české státnosti</title>
+        <summary type='html'>Kdy: Ne 28. z&amp;aacute;&amp;#345; 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Ne 28. zář 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA5MTBhOTJmMzMxODg2YzcxOWNkYWI3Y2FlMGY4ZDU2Mzg3Nzg4Nzg5IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40910a92f331886c719cdab7cae0f8d56387788789' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404bdee7defc8620b327b23400a9da3be5d0721a10</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den české státnosti</title>
+        <summary type='html'>Kdy: So 28. z&amp;aacute;&amp;#345; 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: So 28. zář 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA0YmRlZTdkZWZjODYyMGIzMjdiMjM0MDBhOWRhM2JlNWQwNzIxYTEwIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404bdee7defc8620b327b23400a9da3be5d0721a10' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%405b971aece3bf450de53261bafe25898080af2454</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vítězství</title>
+        <summary type='html'>Kdy: St 8. kv&amp;#283; 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: St 8. kvě 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA1Yjk3MWFlY2UzYmY0NTBkZTUzMjYxYmFmZTI1ODk4MDgwYWYyNDU0IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%405b971aece3bf450de53261bafe25898080af2454' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40574f6e8b741d1eb0e80ed4caea1441858393ff58</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vítězství</title>
+        <summary type='html'>Kdy: &amp;#268;t 8. kv&amp;#283; 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Čt 8. kvě 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA1NzRmNmU4Yjc0MWQxZWIwZTgwZWQ0Y2FlYTE0NDE4NTgzOTNmZjU4IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40574f6e8b741d1eb0e80ed4caea1441858393ff58' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404c7e14f8192d2689f87492d27b8377a884e64167</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vítězství</title>
+        <summary type='html'>Kdy: &amp;Uacute;t 8. kv&amp;#283; 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Út 8. kvě 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA0YzdlMTRmODE5MmQyNjg5Zjg3NDkyZDI3YjgzNzdhODg0ZTY0MTY3IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404c7e14f8192d2689f87492d27b8377a884e64167' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40be894303693f374fad9017da7ac6391c23eca0f6</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vzniku samostatného československého státu</title>
+        <summary type='html'>Kdy: Po 28. &amp;#345;&amp;iacute;j 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Po 28. říj 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBiZTg5NDMwMzY5M2YzNzRmYWQ5MDE3ZGE3YWM2MzkxYzIzZWNhMGY2IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40be894303693f374fad9017da7ac6391c23eca0f6' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404dcdf85aaa09aea21fd49914085b47cdb44ccf0f</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vzniku samostatného československého státu</title>
+        <summary type='html'>Kdy: &amp;Uacute;t 28. &amp;#345;&amp;iacute;j 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Út 28. říj 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA0ZGNkZjg1YWFhMDlhZWEyMWZkNDk5MTQwODViNDdjZGI0NGNjZjBmIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404dcdf85aaa09aea21fd49914085b47cdb44ccf0f' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%400203488aeaa000f7e787fef631d12bc0d7325ef2</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den vzniku samostatného československého státu</title>
+        <summary type='html'>Kdy: Ne 28. &amp;#345;&amp;iacute;j 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Ne 28. říj 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAwMjAzNDg4YWVhYTAwMGY3ZTc4N2ZlZjYzMWQxMmJjMGQ3MzI1ZWYyIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%400203488aeaa000f7e787fef631d12bc0d7325ef2' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40a77dbe4c1834f36ad5a43979dedd2488a2760ebb</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den upálení mistra Jana Husa</title>
+        <summary type='html'>Kdy: P&amp;aacute; 6. &amp;#269;vc 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Pá 6. čvc 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBhNzdkYmU0YzE4MzRmMzZhZDVhNDM5NzlkZWRkMjQ4OGEyNzYwZWJiIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40a77dbe4c1834f36ad5a43979dedd2488a2760ebb' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%402f980e6bc7f0445430367c33d3e4a27441196199</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den upálení mistra Jana Husa</title>
+        <summary type='html'>Kdy: Ne 6. &amp;#269;vc 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Ne 6. čvc 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAyZjk4MGU2YmM3ZjA0NDU0MzAzNjdjMzNkM2U0YTI3NDQxMTk2MTk5IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%402f980e6bc7f0445430367c33d3e4a27441196199' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4009c62186abafba1bac59818bde105765a7a02121</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den upálení mistra Jana Husa</title>
+        <summary type='html'>Kdy: So 6. &amp;#269;vc 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: So 6. čvc 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAwOWM2MjE4NmFiYWZiYTFiYWM1OTgxOGJkZTEwNTc2NWE3YTAyMTIxIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4009c62186abafba1bac59818bde105765a7a02121' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40cc790a245031c0186f1d6d9ab8560db87c86269d</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den slovanských věrozvěstů Cyrila a Metoděje</title>
+        <summary type='html'>Kdy: So 5. &amp;#269;vc 2014&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: So 5. čvc 2014&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEBjYzc5MGEyNDUwMzFjMDE4NmYxZDZkOWFiODU2MGRiODdjODYyNjlkIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%40cc790a245031c0186f1d6d9ab8560db87c86269d' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404b4d8fc982e6734d799afdd5de90041a009e56b5</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den slovanských věrozvěstů Cyrila a Metoděje</title>
+        <summary type='html'>Kdy: P&amp;aacute; 5. &amp;#269;vc 2013&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Pá 5. čvc 2013&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEA0YjRkOGZjOTgyZTY3MzRkNzk5YWZkZDVkZTkwMDQxYTAwOWU1NmI1IGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%404b4d8fc982e6734d799afdd5de90041a009e56b5' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+    <entry>
+        <id>http://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4011782fd57a7faacca6964bd38cb277d813a3fd5d</id>
+        <published>2013-11-10T01:52:09.000Z</published>
+        <updated>2013-11-10T01:52:09.000Z</updated>
+        <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/g/2005#event' />
+        <title type='html'>Den slovanských věrozvěstů Cyrila a Metoděje</title>
+        <summary type='html'>Kdy: &amp;#268;t 5. &amp;#269;vc 2012&lt;br&gt;
+            &lt;br&gt;Kdo: &amp;#268;esk&amp;eacute; sv&amp;aacute;tky
+
+            &lt;br&gt;Stav události: potvrzeno</summary>
+        <content type='html'>Kdy: Čt 5. čvc 2012&lt;br /&gt;
+            &lt;br /&gt;Kdo: České svátky
+
+            &lt;br /&gt;Stav události: potvrzeno</content>
+        <link rel='alternate' type='text/html'
+            href='https://www.google.com/calendar/event?eid=aEAxMTc4MmZkNTdhN2ZhYWNjYTY5NjRiZDM4Y2IyNzdkODEzYTNmZDVkIGNzLmN6ZWNoI2hvbGlkYXlAdg' title='alternate' />
+        <link rel='self' type='application/atom+xml'
+            href='https://www.google.com/calendar/feeds/cs.czech%23holiday%40group.v.calendar.google.com/public/basic/h%4011782fd57a7faacca6964bd38cb277d813a3fd5d' />
+        <author>
+            <name>České svátky</name>
+        </author>
+    </entry>
+</feed>
