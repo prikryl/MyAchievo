@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.vaadin.ui.components.calendar.event.CalendarEvent;
 import com.vaadin.ui.components.calendar.event.CalendarEvent.EventChangeNotifier;
 
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
+import cz.admin24.myachievo.web2.utils.RemainingTime;
+import cz.admin24.myachievo.web2.utils.TimesheetUtils;
 
 public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
 
@@ -62,7 +65,17 @@ public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
 
     @Override
     public String getCaption() {
-        return report.getRemark();
+        StringBuffer ret = new StringBuffer();
+        ret.append(report.getHours());
+        ret.append(":");
+        if (report.getMinutes() < 10) {
+            ret.append("0");
+        }
+        ret.append(report.getMinutes());
+        ret.append(" ");
+        ret.append(report.getRemark());
+
+        return ret.toString();
     }
 
 

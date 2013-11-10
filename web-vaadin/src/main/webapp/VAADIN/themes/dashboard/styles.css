@@ -6500,6 +6500,14 @@ body .dashboard.v-app .v-app-loading {
 	background: transparent url(./img/calendar/arrowNext.png) no-repeat 50% 0;
 }
 
+.dashboard .v-calendar-event-caption {
+	font-weight: bold;
+}
+
+.dashboard .v-calendar-event-caption > span, .dashboard .v-calendar-event-caption > br {
+	display: none;
+}
+
 .dashboard .v-calendar-week-wrapper td:nth-child(8) {
 	background-color: whitesmoke;
 }

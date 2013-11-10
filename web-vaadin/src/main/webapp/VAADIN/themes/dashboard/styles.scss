@@ -58,6 +58,13 @@
 		background: transparent url(./img/calendar/arrowNext.png) no-repeat 50% 0;
 	}
 
+	.v-calendar-event-caption {
+		font-weight: bold;
+	}
+	.v-calendar-event-caption > span, .v-calendar-event-caption > br {
+		display: none;
+	}
+
 	.v-calendar-week-wrapper td:nth-child(8){
 		background-color: whitesmoke;
 	}
