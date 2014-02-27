@@ -10,9 +10,10 @@
 
     <http auto-config='true' use-expressions="true">
         <intercept-url pattern="/login/" access="permitAll" />
+        <intercept-url pattern="/static/**" access="permitAll" />
         <intercept-url pattern="/**" access="isAuthenticated()" />
         <logout logout-url="/logout" invalidate-session="true"/>
-        <form-login login-page="/login/" authentication-failure-url="/login/" />
+        <form-login login-page="/login/" authentication-failure-url="/login/?error=1" />
     </http>
 
 <!--     <authentication-manager > -->
