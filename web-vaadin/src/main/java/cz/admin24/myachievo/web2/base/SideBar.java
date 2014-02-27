@@ -28,6 +28,7 @@ import cz.admin24.myachievo.web2.calendar.CalendarUrl;
 import cz.admin24.myachievo.web2.dashboard.DashboardUrl;
 import cz.admin24.myachievo.web2.reports.ReportsUrl;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
+import cz.admin24.myachievo.web2.service.ProjectsCache;
 
 public class SideBar extends VerticalLayout {
 
@@ -101,6 +102,7 @@ public class SideBar extends VerticalLayout {
                         getSession().close();
                         // UI.getCurrent().getU
                         Page.getCurrent().reload();
+                        SpringUtils.getBean(ProjectsCache.class).clean();
                         SecurityContextHolder.getContext().setAuthentication(null);
                     }
                 });
