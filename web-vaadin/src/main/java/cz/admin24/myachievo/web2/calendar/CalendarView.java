@@ -186,6 +186,11 @@ public class CalendarView extends VerticalLayout implements View {
                 Integer hours = minutesBetween / 60;
                 Integer minutes = minutesBetween % 60;
 
+                if (hours > 9) {
+                    hours = 9;
+                    minutes = 45;
+                }
+
                 WorkReport workReport = new WorkReport(null, start.toDate(), null, null, null, null, hours, minutes);
 
                 EventDetailsWindow eventDetailsWindow = new EventDetailsWindow(workReport) {
