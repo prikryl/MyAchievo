@@ -7,7 +7,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.7";
+	content: "7.1.11";
 }
 
 .v-generated-body {
@@ -15,6 +15,10 @@
 	height: 100%;
 	border: 0;
 	margin: 0;
+	overflow: hidden;
+}
+
+.v-modal-window-open {
 	overflow: hidden;
 }
 
@@ -333,7 +337,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.7";
+	content: "7.1.11";
 }
 
 .v-generated-body {
@@ -341,6 +345,10 @@
 	height: 100%;
 	border: 0;
 	margin: 0;
+	overflow: hidden;
+}
+
+.v-modal-window-open {
 	overflow: hidden;
 }
 
@@ -1031,6 +1039,14 @@
 .dashboard .v-accordion-item-content {
 	position: absolute;
 	width: 100%;
+}
+
+.dashboard .v-browserframe {
+	font-size: 0;
+}
+
+.dashboard .v-browserframe > span {
+	font-size: 14px;
 }
 
 .dashboard .v-button {
@@ -1952,6 +1968,10 @@ body .dashboard.v-app .v-app-loading {
 	overflow: auto;
 	font-size: 0;
 	line-height: normal;
+}
+
+.v-ff .dashboard .v-scrollable {
+	font-size: 14px;
 }
 
 .v-ios.v-webkit .dashboard .v-scrollable {

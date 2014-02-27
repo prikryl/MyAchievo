@@ -1,8 +1,6 @@
 package cz.admin24.myachievo.web2;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.stereotype.Component;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
@@ -27,8 +25,8 @@ import cz.admin24.myachievo.web2.reports.ReportsView;
 
 @Theme("dashboard")
 @SuppressWarnings("serial")
-@Component("webUI")
-@Scope("prototype")
+// @Component("webUI")
+// @Scope("prototype")
 public class WebUI extends UI implements ErrorHandler {
     // private final AchievoCalendar achievoCalendar = new AchievoCalendar();
     private final BaseLayout baseLayout = new BaseLayout();
