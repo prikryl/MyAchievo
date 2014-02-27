@@ -13,7 +13,7 @@
         <intercept-url pattern="/login.do" access="permitAll" />
         <intercept-url pattern="/**" access="isAuthenticated()" />
 <!--         <form-login login-page="/login/" authentication-failure-url="/login/?error=true" /> -->
-        <logout logout-url="/logout" />
+        <logout logout-url="/logout" invalidate-session="true"/>
         <form-login login-page="/login.do" authentication-failure-url="/login.do" />
     </http>
 

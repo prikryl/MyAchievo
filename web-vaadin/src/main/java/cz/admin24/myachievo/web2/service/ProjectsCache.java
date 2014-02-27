@@ -32,6 +32,13 @@ public class ProjectsCache implements Serializable {
     private WorkReportCache                                workReportCache;
 
 
+    public void clean() {
+        projects = new ArrayList<Project>();
+        projectsPhases = new ConcurrentHashMap<String, List<ProjectPhase>>();
+        phasesActivities = new ConcurrentHashMap<Pair<String, String>, List<PhaseActivity>>();
+    }
+
+
     public List<Project> getProjects() {
         if (projects.isEmpty()) {
             projects = achievoConnector.getProjects();
