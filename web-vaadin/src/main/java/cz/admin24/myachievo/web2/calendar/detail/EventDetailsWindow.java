@@ -75,7 +75,6 @@ public abstract class EventDetailsWindow extends Window {
         refreshForm(workReport);
         css();
 
-
     }
 
 
@@ -223,6 +222,9 @@ public abstract class EventDetailsWindow extends Window {
         for (Project p : projects) {
             Item item = projectCombo.addItem(p.getName());
             item.getItemProperty(PROPERTY_ID).setValue(p.getId());
+            if (!StringUtils.isEmpty(p.getCode())) {
+                projectCombo.setItemCaption(p.getName(), "[" + p.getCode() + "] " + p.getName());
+            }
         }
         if (!projects.isEmpty()) {
             projectCombo.setValue(projects.get(0).getName());

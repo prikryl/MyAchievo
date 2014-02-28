@@ -66,6 +66,9 @@ public class CmdGetProjects {
 
             tdMatcher.find();
             code = tdMatcher.group(1).trim();
+            if ("&nbsp;".equalsIgnoreCase(code)) {
+                code = "";
+            }
             tdMatcher.find();
             name = tdMatcher.group(1).trim();
             tdMatcher.find();

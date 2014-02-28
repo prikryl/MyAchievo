@@ -72,7 +72,9 @@ public class WorkReportEvent implements CalendarEvent, EventChangeNotifier {
             ret.append("0");
         }
         ret.append(report.getMinutes());
-        ret.append(" ");
+        ret.append(" ## ");
+        ret.append(report.getProject());
+        ret.append(" ## ");
         ret.append(report.getRemark());
 
         return ret.toString();

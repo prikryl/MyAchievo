@@ -78,7 +78,9 @@ public class CmdGetWorkReportFromHtml {
                 base = 1;
             }
             Date date = parseDate(trim(StringUtils.substringAfter(cols[base + 1], ">")));
-            String project = StringUtils.substringAfter(trim(StringUtils.substringAfter(cols[base + 2], ">")), ": ");
+
+            String projectNotCleaned = trim(StringUtils.substringAfter(cols[base + 2], ">"));
+            String project = StringUtils.contains(projectNotCleaned, ": ")? StringUtils.substringAfter(projectNotCleaned, ": "):projectNotCleaned;
 
             String phase = trim(StringUtils.substringAfter(cols[base + 3], ">"));
             String activity = trim(StringUtils.substringAfter(cols[base + 5], ">"));
