@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +86,7 @@ public class ProjectsCache implements Serializable {
 
     public Project getProjectByName(String project) {
         for (Project p : getProjects()) {
-            if (p.getName().equals(project)) {
+            if (StringUtils.equals(p.getName(), project)) {
                 return p;
             }
         }
@@ -95,7 +96,7 @@ public class ProjectsCache implements Serializable {
 
     public ProjectPhase getPhaseByName(String phaseName, Project project) {
         for (ProjectPhase p : getPhases(project.getId(), project.getName())) {
-            if (p.getName().equals(phaseName)) {
+            if (StringUtils.equals(p.getName(), phaseName)) {
                 return p;
             }
         }
@@ -105,7 +106,7 @@ public class ProjectsCache implements Serializable {
 
     public PhaseActivity getActivityByName(String activity, ProjectPhase phase, Project project) {
         for (PhaseActivity a : getActivities(project.getId(), phase.getId(), project.getName(), phase.getName())) {
-            if (a.getName().equals(activity)) {
+            if (StringUtils.equals(a.getName(), activity)) {
                 return a;
             }
         }
