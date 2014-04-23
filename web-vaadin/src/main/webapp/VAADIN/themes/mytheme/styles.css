@@ -7,7 +7,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.11";
+	content: "7.1.14";
 }
 
 .v-generated-body {
@@ -1637,7 +1637,7 @@ body .mytheme.v-app .v-app-loading {
 	border: 1px solid #ddd;
 }
 
-.mytheme .v-disabled .v-datefield-calendarpanel-day, .mytheme .v-disabled .v-datefield-calendarpanel-day-today {
+.mytheme .v-disabled .v-datefield-calendarpanel-day, .mytheme .v-disabled .v-datefield-calendarpanel-day-today, .mytheme .v-disabled.v-datefield-popupcalendar .v-datefield-button {
 	cursor: default;
 }
 
@@ -1749,7 +1749,7 @@ body .mytheme.v-app .v-app-loading {
 	border: 1px solid #ddd;
 }
 
-.mytheme .v-disabled .v-inline-datefield-calendarpanel-day, .mytheme .v-disabled .v-inline-datefield-calendarpanel-day-today {
+.mytheme .v-disabled .v-inline-datefield-calendarpanel-day, .mytheme .v-disabled .v-inline-datefield-calendarpanel-day-today, .mytheme .v-disabled.v-inline-datefield-popupcalendar .v-inline-datefield-button {
 	cursor: default;
 }
 
@@ -5080,7 +5080,7 @@ body .mytheme.v-app .v-app-loading {
 	width: 6px;
 }
 
-.mytheme .v-verticallayout-blue, .mytheme .v-horizontallayout-blue, .mytheme .v-orderedlayout-blue, .mytheme .v-gridlayout-blue, .mytheme .v-csslayout-blue, .mytheme .v-formlayout-blue, .mytheme .v-splitpanel-vertical-blue, .mytheme .v-splitpanel-horizontal-blue {
+.mytheme .v-verticallayout-blue, .mytheme .v-horizontallayout-blue, .mytheme .v-orderedlayout-blue, .mytheme .v-gridlayout-blue, .mytheme .v-csslayout-blue, .mytheme .v-formlayout-blue, .mytheme .v-absolutelayout-blue, .mytheme .v-splitpanel-vertical-blue, .mytheme .v-splitpanel-horizontal-blue {
 	background-color: #bcd3de;
 }
 
@@ -5088,7 +5088,7 @@ body .mytheme.v-app .v-app-loading {
 	background-color: #bcd3de;
 }
 
-.mytheme .v-verticallayout-white, .mytheme .v-horizontallayout-white, .mytheme .v-orderedlayout-white, .mytheme .v-gridlayout-white, .mytheme .v-csslayout-white, .mytheme .v-formlayout-white, .mytheme .v-splitpanel-vertical-white, .mytheme .v-splitpanel-horizontal-white {
+.mytheme .v-verticallayout-white, .mytheme .v-horizontallayout-white, .mytheme .v-orderedlayout-white, .mytheme .v-gridlayout-white, .mytheme .v-csslayout-white, .mytheme .v-formlayout-white, .mytheme .v-absolutelayout-white, .mytheme .v-splitpanel-vertical-white, .mytheme .v-splitpanel-horizontal-white {
 	background-color: #fff;
 	color: #222;
 }
@@ -5098,7 +5098,7 @@ body .mytheme.v-app .v-app-loading {
 	color: #222;
 }
 
-.mytheme .v-verticallayout-black, .mytheme .v-horizontallayout-black, .mytheme .v-orderedlayout-black, .mytheme .v-gridlayout-black, .mytheme .v-csslayout-black, .mytheme .v-formlayout-black, .mytheme .v-splitpanel-vertical-black, .mytheme .v-splitpanel-horizontal-black {
+.mytheme .v-verticallayout-black, .mytheme .v-horizontallayout-black, .mytheme .v-orderedlayout-black, .mytheme .v-gridlayout-black, .mytheme .v-csslayout-black, .mytheme .v-formlayout-black, .mytheme .v-absolutelayout-black, .mytheme .v-splitpanel-vertical-black, .mytheme .v-splitpanel-horizontal-black {
 	background: #1e2022 url(../reindeer/layouts/img/black-bg.png) repeat-x;
 }
 
@@ -6214,6 +6214,10 @@ body .mytheme.v-app .v-app-loading {
 
 .v-sa .mytheme .v-tabsheet-tabs .v-captiontext {
 	display: inline-block;
+}
+
+.v-sa .mytheme .v-tabsheet-tabs .v-icon {
+	vertical-align: top;
 }
 
 .mytheme .v-tabsheet-tabs .v-icon {

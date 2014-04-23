@@ -139,6 +139,9 @@ public class CalendarView extends VerticalLayout implements View {
                 DateTime start = new DateTime(event.getNewStart());
                 DateTime newEnd = new DateTime(event.getNewEnd());
                 int minutesBetween = Minutes.minutesBetween(start, newEnd).getMinutes();
+                if(minutesBetween > (45+9*60)){
+                    minutesBetween=45+9*60;
+                }
                 minutesBetween = (int) Math.round(minutesBetween / 15.0) * 15;
                 Integer hours = minutesBetween / 60;
                 Integer minutes = minutesBetween % 60;

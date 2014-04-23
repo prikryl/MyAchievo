@@ -7,7 +7,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.11";
+	content: "7.1.14";
 }
 
 .v-generated-body {
@@ -337,7 +337,7 @@
 }
 
 .v-vaadin-version:after {
-	content: "7.1.11";
+	content: "7.1.14";
 }
 
 .v-generated-body {
@@ -2284,7 +2284,7 @@ body .dashboard.v-app .v-app-loading {
 	border: 1px solid #ddd;
 }
 
-.dashboard .v-disabled .v-datefield-calendarpanel-day, .dashboard .v-disabled .v-datefield-calendarpanel-day-today {
+.dashboard .v-disabled .v-datefield-calendarpanel-day, .dashboard .v-disabled .v-datefield-calendarpanel-day-today, .dashboard .v-disabled.v-datefield-popupcalendar .v-datefield-button {
 	cursor: default;
 }
 
@@ -2396,7 +2396,7 @@ body .dashboard.v-app .v-app-loading {
 	border: 1px solid #ddd;
 }
 
-.dashboard .v-disabled .v-inline-datefield-calendarpanel-day, .dashboard .v-disabled .v-inline-datefield-calendarpanel-day-today {
+.dashboard .v-disabled .v-inline-datefield-calendarpanel-day, .dashboard .v-disabled .v-inline-datefield-calendarpanel-day-today, .dashboard .v-disabled.v-inline-datefield-popupcalendar .v-inline-datefield-button {
 	cursor: default;
 }
 
