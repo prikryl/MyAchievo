@@ -149,7 +149,7 @@ input[type=text], input[type=password] {
   width: 300px;
   height: 40px;
   color: #bbb;
-  text-shadow: 1px 1px 1px black;
+/*   text-shadow: 1px 1px 1px black; */
   background: rgba(0, 0, 0, 0.16);
   border: 0;
   border-radius: 5px;

@@ -16,6 +16,25 @@
 <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
+		<p style="
+    /* -webkit-font-smoothing: antialiased; */
+    color: rgb(208, 209, 211);
+    /* cursor: default; */
+    /* display: block; */  font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 33px;
+    /* font-style: normal; */
+    /* font-variant: normal; */
+    /* font-weight: normal; */
+    /* height: 14px; */
+    /* line-height: 14.300000190734863px; */  text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.498039) 0px 2px 2px;
+    /* white-space: normal; */
+    /* width: 85px; */
+    padding: 1em;
+">
+			<span>MyAchievo</span>
+		</p>
+
 	<form name='f' action="<c:url value='/j_spring_security_check' />"
 		class="login" method='POST'>
 
@@ -37,20 +56,20 @@
 			Nebývá stejné jako do domény!</p>
 	</form>
 
-		<section class="about">
-			<p class="about-links">
-				<a href="http://www.cssflow.com/snippets/dark-login-form"
-					target="_parent">MyAchievo</a>
+<!-- 		<section class="about"> -->
+<!-- 			<p class="about-links"> -->
+<!-- 				<a href="http://www.cssflow.com/snippets/dark-login-form" -->
+<!-- 					target="_parent">MyAchievo</a> -->
 <!-- 					<a -->
 <!-- 					href="http://www.cssflow.com/snippets/dark-login-form.zip" -->
 <!-- 					target="_parent">Download</a> -->
-			</p>
+<!-- 			</p> -->
 <!-- 			<p class="about-author"> -->
 <!-- 				&copy; 2012&ndash;2013 <a href="http://thibaut.me" target="_blank">Thibaut -->
 <!-- 					Courouble</a> - <a href="http://www.cssflow.com/mit-license" -->
 <!-- 					target="_blank">MIT License</a><br> Original PSD by <a -->
 <!-- 					href="http://365psd.com/day/2-234/" target="_blank">Rich McNabb</a> -->
-		</section>
+<!-- 		</section> -->
 </body>
 </html>
 

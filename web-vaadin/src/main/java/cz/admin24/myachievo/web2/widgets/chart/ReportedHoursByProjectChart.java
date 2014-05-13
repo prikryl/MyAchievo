@@ -3,110 +3,69 @@ package cz.admin24.myachievo.web2.widgets.chart;
 import java.util.Date;
 import java.util.List;
 
-import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.metadata.DataLabels;
-import org.dussan.vaadin.dcharts.metadata.LegendPlacements;
-import org.dussan.vaadin.dcharts.metadata.locations.LegendLocations;
-import org.dussan.vaadin.dcharts.metadata.renderers.SeriesRenderers;
-import org.dussan.vaadin.dcharts.options.Highlighter;
-import org.dussan.vaadin.dcharts.options.Legend;
-import org.dussan.vaadin.dcharts.options.Options;
-import org.dussan.vaadin.dcharts.options.SeriesDefaults;
-import org.dussan.vaadin.dcharts.renderers.series.PieRenderer;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multiset;
+import com.vaadin.addon.charts.Chart;
+import com.vaadin.addon.charts.model.ChartType;
+import com.vaadin.addon.charts.model.Configuration;
+import com.vaadin.addon.charts.model.Cursor;
+import com.vaadin.addon.charts.model.DataSeries;
+import com.vaadin.addon.charts.model.DataSeriesItem;
+import com.vaadin.addon.charts.model.Labels;
+import com.vaadin.addon.charts.model.PlotOptionsPie;
+import com.vaadin.addon.charts.model.Tooltip;
 
 import cz.admin24.myachievo.connector.http.dto.WorkReport;
 
 public class ReportedHoursByProjectChart extends Widget {
-    private final DCharts chart = new DCharts();
-    private final Options options;
+    /**
+     *
+     */
+    private static final long    serialVersionUID = 1L;
+
+    private final Chart          chart            = new Chart(ChartType.PIE);
+    private final Configuration  conf             = chart.getConfiguration();
+    private final PlotOptionsPie plotOptions      = new PlotOptionsPie();
+    private final Labels         dataLabels       = new Labels();
 
 
     public ReportedHoursByProjectChart(String caption) {
         super();
-        setCaption(caption);
+        setCaption("Work statistics");
+
+        conf.setTitle(caption);
+
+        initTooltip();
+
+        plotOptions.setAllowPointSelect(true);
+        plotOptions.setCursor(Cursor.POINTER);
+//        plotOptions.setShowInLegend(true);
+
+        dataLabels.setEnabled(true);
+        conf.setPlotOptions(plotOptions);
+
         addComponent(chart);
-        chart.setHeight("300px");
-        chart.setWidth("600px");
-
-        // chart.setSizeFull();
-
-        // SeriesDefaults seriesDefaults = new SeriesDefaults()
-        // .setRenderer(SeriesRenderers.DONUT)
-        // .setRendererOptions(
-        // new DonutRenderer()
-        // .setSliceMargin(3)
-        // .setStartAngle(-90)
-        // .setShowDataLabels(true)
-        // .setDataLabels(DataLabels.PERCENT));
-        SeriesDefaults seriesDefaults = new SeriesDefaults()
-                .setRenderer(SeriesRenderers.PIE)
-                .setRendererOptions(
-                        new PieRenderer()
-                                .setShowDataLabels(true)
-                                .setDataLabels(DataLabels.LABEL));
-
-        Legend legend = new Legend()
-                .setShow(true)
-                .setPlacement(LegendPlacements.OUTSIDE_GRID)
-                .setLocation(LegendLocations.WEST);
-
-        Highlighter highlighter = new Highlighter()
-                .setShow(true)
-                .setShowTooltip(true)
-                .setTooltipAlwaysVisible(true)
-                .setKeepTooltipInsideChart(true);
-
-        options = new Options()
-                .setSeriesDefaults(seriesDefaults)
-                .setLegend(legend)
-                .setHighlighter(highlighter);
-
-        chart.setEnableChartDataMouseEnterEvent(true);
-        chart.setEnableChartDataMouseLeaveEvent(true);
-        chart.setEnableChartDataClickEvent(true);
-        chart.setEnableChartDataRightClickEvent(true);
-
-        // chart.addHandler(new ChartDataMouseEnterHandler() {
-        // @Override
-        // public void onChartDataMouseEnter(ChartDataMouseEnterEvent event) {
-        // showNotification("CHART DATA MOUSE ENTER", event.getChartData());
-        // }
-        // });
-        //
-        // chart.addHandler(new ChartDataMouseLeaveHandler() {
-        // @Override
-        // public void onChartDataMouseLeave(ChartDataMouseLeaveEvent event) {
-        // showNotification("CHART DATA MOUSE LEAVE", event.getChartData());
-        // }
-        // });
-        //
-        // chart.addHandler(new ChartDataClickHandler() {
-        // @Override
-        // public void onChartDataClick(ChartDataClickEvent event) {
-        // showNotification("CHART DATA CLICK", event.getChartData());
-        // }
-        // });
-        //
-        // chart.addHandler(new ChartDataRightClickHandler() {
-        // @Override
-        // public void onChartDataRightClick(ChartDataRightClickEvent event) {
-        // showNotification("CHART DATA RIGHT CLICK", event.getChartData());
-        // }
-        // });
-
-        // refresh();
+        // chart.setHeight("300px");
+        // chart.setWidth("600px");
 
     }
 
 
-    public void refresh(List<WorkReport> workReports, Date month) {
+    private void initTooltip() {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setValueDecimals(1);
+//        tooltip.setPointFormat("{point.y/8} hours: {point.percentage}%");
+//        return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series '+ this.series.name
+        tooltip.setFormatter("return '<b>'+ this.point.name +'</b><br/>'"
+                + "+ Highcharts.numberFormat(this.y/60, 2) + ' hours <br/>'"
+                + "+ Highcharts.numberFormat(this.percentage, 2) +' %';");
+        conf.setTooltip(tooltip);
+    }
 
+
+    public void refresh(List<WorkReport> workReports, Date month) {
         Multimap<String, WorkReport> map = ArrayListMultimap.create();
         Multiset<String> durations = HashMultiset.create();
 
@@ -116,25 +75,20 @@ public class ReportedHoursByProjectChart extends Widget {
             durations.add(workReport.getProject(), workReport.getHours() * 60 + workReport.getMinutes());
         }
 
-        DataSeries dataSeries = new DataSeries();
-        dataSeries.newSeries();
+        DataSeries series = new DataSeries();
         for (String project : durations.elementSet()) {
-            dataSeries.add(project, durations.count(project));
+            series.add(new DataSeriesItem(project, durations.count(project)));
         }
-        // dataSeries.newSeries()
-        // .add("a", 6)
-        // .add("b", 8)
-        // .add("c", 14)
-        // .add("d", 20);
-        // dataSeries.newSeries()
-        // .add("a", 8)
-        // .add("b", 12)
-        // .add("c", 6)
-        // .add("d", 9);
-        //
-        chart.setDataSeries(dataSeries)
-                .setOptions(options)
-                .show();
+        // DataSeriesItem chrome = new DataSeriesItem("Chrome", 12.8);
+        // chrome.setSliced(true);
+        // chrome.setSelected(true);
+        // series.add(chrome);
+        // series.add(new DataSeriesItem("Safari", 8.5));
+        // series.add(new DataSeriesItem("Opera", 6.2));
+        // series.add(new DataSeriesItem("Others", 0.7));
+        conf.setSeries(series);
+
+        chart.drawChart(conf);
     }
 
 }

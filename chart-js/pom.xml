@@ -1,44 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>cz.admin24.myachievo.vaadin</groupId>
+    <artifactId>chart-js</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Vaadin Web Application</name>
 
     <parent>
         <groupId>cz.admin24.myachievo</groupId>
         <artifactId>myachievo</artifactId>
-        <version>0.1.3-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>web-vaadin</artifactId>
-    <packaging>war</packaging>
-    <version>0.1.3-SNAPSHOT</version>
-    <name>Vaadin Web Application</name>
-
-
-
-
-
     <dependencies>
-        <dependency>
-           <groupId>com.vaadin.addon</groupId>
-           <artifactId>vaadin-charts</artifactId>
-           <version>1.1.6</version>
-        </dependency>
-        <dependency>
-            <groupId>cz.admin24.myachievo</groupId>
-            <artifactId>connector-http</artifactId>
-            <version>0.1.3-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.gadp</groupId>
-            <artifactId>holidays</artifactId>
-            <version>1.0</version>
-        </dependency>
-<!--         <dependency> -->
-<!--             <groupId>org.vaadin.addons</groupId> -->
-<!--             <artifactId>dcharts-widget</artifactId> -->
-<!--             <version>1.7.0</version> -->
-<!--         </dependency> -->
-
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-server</artifactId>
@@ -54,13 +29,11 @@
 		  compilation classpath by vaadin-maven-plugin so normally there is no need for an
 		  explicit dependency.
 		-->
-
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client</artifactId>
@@ -74,102 +47,10 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-themes</artifactId>
         </dependency>
-
-
-<!--         spring -->
-<!--         <dependency> -->
-<!--             <groupId>ru.xpoft.vaadin</groupId> -->
-<!--             <artifactId>spring-vaadin-integration</artifactId> -->
-<!--             <version>2.0.1</version> -->
-<!--         </dependency> -->
-<!-- Spring -->
-        <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <exclusions>
-                <!-- Exclude Commons Logging in favor of SLF4j -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <!-- JSTL and taglibs dependencies -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Commons -->
-        <dependency>
-            <groupId>net.sf.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
         </dependency>
     </dependencies>
 
@@ -262,7 +143,7 @@
                                             vaadin-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [7.1.4,)
+                                            [7.1.8,)
                                         </versionRange>
                                         <goals>
                                             <goal>resources</goal>
@@ -273,7 +154,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore></ignore>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -283,35 +164,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-
-
-    <repositories>
-        <repository>
-            <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-        <repository>
-            <id>vaadin-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>vaadin-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
