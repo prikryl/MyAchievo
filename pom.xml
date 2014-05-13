@@ -25,8 +25,17 @@
         <connection>scm:git:https://github.com/prikryl/MyAchievo.git</connection>
         <developerConnection>scm:git:https://github.com/prikryl/MyAchievo.git</developerConnection>
         <url>scm:git:https://github.com/prikryl/MyAchievo.git</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
+
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${user.home}/.m2/repository/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
 
