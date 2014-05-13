@@ -20,22 +20,20 @@ import cz.admin24.myachievo.connector.http.dto.WorkReport;
 import cz.admin24.myachievo.web2.SpringUtils;
 import cz.admin24.myachievo.web2.service.AchievoConnectorWrapper;
 import cz.admin24.myachievo.web2.widgets.chart.ReportedHoursByProjectChart;
-import cz.admin24.myachievo.web2.widgets.chart.Widget;
 
 public class ReportsView extends VerticalLayout implements View {
 
-    public static final String                NAME                         = "reports";
-    private final HorizontalLayout            toolbar                      = new HorizontalLayout();
-    private final Label                       label                        = new Label("MyDashboard");
-    private final Panel                       contentPanel                 = new Panel();
-    private final GridLayout                  widgetsLayout                = new GridLayout(2, 1);
+    public static final String                NAME           = "reports";
+    private final HorizontalLayout            toolbar        = new HorizontalLayout();
+    private final Label                       label          = new Label("MyDashboard");
+    private final Panel                       contentPanel   = new Panel();
+    private final GridLayout                  widgetsLayout  = new GridLayout(2, 1);
 
-    private final InvoiceReport               invoiceReport                = new InvoiceReport();
-    private final ReportedHoursByProjectChart thisMonthChart               = new ReportedHoursByProjectChart("This month");
-    private final ReportedHoursByProjectChart lastMonthChart               = new ReportedHoursByProjectChart("Last month");
-    private final Widget                      reportedHoursByProjectChart3 = new TestChart();
+    private final InvoiceReport               invoiceReport  = new InvoiceReport();
+    private final ReportedHoursByProjectChart thisMonthChart = new ReportedHoursByProjectChart("This month");
+    private final ReportedHoursByProjectChart lastMonthChart = new ReportedHoursByProjectChart("Last month");
     //
-    private final AchievoConnectorWrapper     connector                    = SpringUtils.getBean(AchievoConnectorWrapper.class);
+    private final AchievoConnectorWrapper     connector      = SpringUtils.getBean(AchievoConnectorWrapper.class);
 
 
     public ReportsView() {
@@ -88,7 +86,7 @@ public class ReportsView extends VerticalLayout implements View {
             }
         }
 
-        thisMonthChart.refresh(lastMonthReports, lastMonthStart);
-        lastMonthChart.refresh(thisMonthReports, thisMonthStart);
+        thisMonthChart.refresh(thisMonthReports, lastMonthStart);
+        lastMonthChart.refresh(lastMonthReports, thisMonthStart);
     }
 }
