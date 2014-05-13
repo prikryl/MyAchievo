@@ -4704,9 +4704,9 @@ body .dashboard.v-app .v-app-loading {
 	width: 0;
 	height: 0;
 	border: 1px solid;
-	border-width: 0.5em 0.45em;
+	border-width: 0.7em;
 	border-color: #646E77 transparent transparent;
-	top: 0.8em;
+	top: 0.4em;
 	background: transparent;
 }
 
