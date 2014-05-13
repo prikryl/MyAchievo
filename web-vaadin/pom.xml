@@ -14,14 +14,19 @@
     <name>Vaadin Web Application</name>
 
 
-
+    <scm>
+        <connection>scm:git:https://github.com/prikryl/MyAchievo.git</connection>
+        <developerConnection>scm:git:https://github.com/prikryl/MyAchievo.git</developerConnection>
+        <url>scm:git:https://github.com/prikryl/MyAchievo.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
 
     <dependencies>
         <dependency>
-           <groupId>com.vaadin.addon</groupId>
-           <artifactId>vaadin-charts</artifactId>
-           <version>1.1.6</version>
+            <groupId>com.vaadin.addon</groupId>
+            <artifactId>vaadin-charts</artifactId>
+            <version>1.1.6</version>
         </dependency>
         <dependency>
             <groupId>cz.admin24.myachievo</groupId>
