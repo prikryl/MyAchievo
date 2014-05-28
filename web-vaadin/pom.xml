@@ -10,7 +10,6 @@
 
     <artifactId>web-vaadin</artifactId>
     <packaging>war</packaging>
-    <version>0.1.2-SNAPSHOT</version>
     <name>Vaadin Web Application</name>
 
 
@@ -26,7 +25,7 @@
         <dependency>
             <groupId>cz.admin24.myachievo</groupId>
             <artifactId>connector-http</artifactId>
-            <version>0.1.2-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>ch.gadp</groupId>
@@ -273,7 +272,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
