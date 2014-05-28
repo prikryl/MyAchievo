@@ -27,11 +27,11 @@
             <artifactId>connector-http</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <dependency>
+   <!--     <dependency>
             <groupId>ch.gadp</groupId>
             <artifactId>holidays</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
 <!--         <dependency> -->
 <!--             <groupId>org.vaadin.addons</groupId> -->
 <!--             <artifactId>dcharts-widget</artifactId> -->
